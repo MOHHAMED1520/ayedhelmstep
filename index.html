@@ -11,7 +11,7 @@
   <meta property="og:image" content="images/logo.png">
   <meta name="theme-color" content="#1a56db">
   <link rel="icon" type="image/png" href="images/logo.png">
-  <meta property="og:url" content="https://ayed-academy.pages.dev">
+  <meta property="og:url" content="https://mohhamed1520.github.io/ayedhelmstep/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="أكاديمية عايد للتدريب | ستيب 2026">
@@ -23,6 +23,23 @@
 </head>
 <body>
 
+<!-- ══ URGENCY OFFER BAR ══ -->
+<div class="urgency-bar" id="urgencyBar">
+  <div class="urgency-inner">
+    <span class="urgency-fire">🔥</span>
+    <span class="urgency-text">العرض ينتهي خلال:</span>
+    <div class="countdown-wrap">
+      <div class="cd-unit"><span class="cd-num" id="cdH">00</span><span class="cd-lbl">ساعة</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cdM">00</span><span class="cd-lbl">دقيقة</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cdS">00</span><span class="cd-lbl">ثانية</span></div>
+    </div>
+    <span class="urgency-badge">خصم 70% 🚀</span>
+  </div>
+  <button class="urgency-close" onclick="document.getElementById('urgencyBar').style.display='none'" aria-label="إغلاق">×</button>
+</div>
+
 <!-- ══ ANNOUNCEMENT BAR ══ -->
 <div class="announce-bar">
   <div class="announce-ticker">
@@ -31,6 +48,7 @@
     <span class="announce-item"><span class="a-dot"></span>⚡ وصول فوري بعد التأكيد</span>
     <span class="announce-item"><span class="a-dot"></span>🎯 معدل نجاح +90% من طلابنا</span>
     <span class="announce-item"><span class="a-dot"></span>🤖 مساعد ذكي متاح 24/7</span>
+    <span class="announce-item"><span class="a-dot"></span>💬 تيليجرام مباشر @Ayed_Academy_2026</span>
     <span class="announce-item"><span class="a-dot"></span>🔥 خصومات تصل إلى <span class="gold">70%</span> على جميع الدورات</span>
     <span class="announce-item"><span class="a-dot"></span>🆕 تحديث 2026 — أحدث النماذج 50 · 51 · 52</span>
     <span class="announce-item"><span class="a-dot"></span>⚡ وصول فوري بعد التأكيد</span>
@@ -60,6 +78,10 @@
       </nav>
 
       <div class="header-actions">
+        <div class="live-visitors" id="liveVisitors">
+          <span class="live-dot"></span>
+          <span id="liveCount">47</span> متصل الآن
+        </div>
         <button class="cart-btn" onclick="toggleCart()">
           <i class="fas fa-shopping-cart"></i>
           <span class="cart-count" id="cartCount" data-count="0">0</span>
@@ -109,7 +131,7 @@
       </p>
       <div class="hero-stats">
         <div class="stat-item">
-          <span class="stat-num" data-target="1000">0</span>
+          <span class="stat-num" data-target="1200">0</span>
           <span class="stat-label">طالب مسجّل</span>
         </div>
         <div class="stat-item">
@@ -121,9 +143,14 @@
           <span class="stat-label">دورات متخصصة</span>
         </div>
         <div class="stat-item">
-          <span class="stat-num">90</span>
-          <span class="stat-label">يوم وصول</span>
+          <span class="stat-num">52</span>
+          <span class="stat-label">نموذج محدّث</span>
         </div>
+      </div>
+      <!-- Social proof live bar -->
+      <div class="social-proof-bar" id="socialProofBar">
+        <span class="sp-dot"></span>
+        <span id="spText">أحمد من الرياض اشترك الآن في دورة STEP المميزة 💎</span>
       </div>
       <div class="hero-btns">
         <a href="#courses" class="btn-hero-primary">
@@ -153,8 +180,19 @@
     <div class="trust-item"><i class="fas fa-layer-group"></i><span>محاكيات الاختبار الحقيقي</span></div>
     <div class="trust-item"><i class="fas fa-mobile-alt"></i><span>متوافق مع جميع الأجهزة</span></div>
     <div class="trust-item"><i class="fas fa-robot"></i><span>مساعد ذكي 24/7</span></div>
+    <div class="trust-item"><i class="fas fa-fire"></i><span>أكثر من 1200 طالب ناجح</span></div>
+    <div class="trust-item"><i class="fas fa-star"></i><span>تقييم 4.9 من 5 نجوم</span></div>
+    <!-- Repeat for infinite scroll -->
+    <div class="trust-item"><i class="fas fa-shield-alt"></i><span>محتوى موثوق ومحدّث</span></div>
+    <div class="trust-item"><i class="fas fa-sync-alt"></i><span>تحديثات 90 يوم مجاناً</span></div>
+    <div class="trust-item"><i class="fas fa-clock"></i><span>وصول فوري بعد التأكيد</span></div>
+    <div class="trust-item"><i class="fab fa-telegram"></i><span>دعم مباشر على تيليجرام</span></div>
+    <div class="trust-item"><i class="fas fa-certificate"></i><span>أحدث نماذج STEP 2026</span></div>
   </div>
 </section>
+
+<!-- ══ SCROLL PROGRESS BAR ══ -->
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- ══ COURSES ══ -->
 <section class="courses-section" id="courses">
@@ -570,12 +608,50 @@
   </div>
 </section>
 
+<!-- ══ GUARANTEE SECTION ══ -->
+<section class="guarantee-section">
+  <div class="container">
+    <div class="guarantee-grid reveal">
+      <div class="guarantee-card">
+        <div class="gu-icon">🛡️</div>
+        <h4>محتوى مضمون 100%</h4>
+        <p>محتوى محدّث ومراجع باستمرار من متخصصين في اختبار STEP</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="gu-icon">⚡</div>
+        <h4>وصول فوري بعد التأكيد</h4>
+        <p>يتم تفعيل دورتك خلال ساعات قليلة بعد تأكيد الدفع مباشرة</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="gu-icon">💬</div>
+        <h4>دعم مباشر 24/7</h4>
+        <p>فريق الدعم متاح على تيليجرام للإجابة على جميع استفساراتك</p>
+      </div>
+      <div class="guarantee-card">
+        <div class="gu-icon">🔄</div>
+        <h4>تحديثات مجانية</h4>
+        <p>احصل على كل النماذج الجديدة فور إضافتها دون أي رسوم إضافية</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══ CTA ══ -->
 <section class="cta-section">
   <div class="container">
     <div class="cta-content reveal">
       <h2>لا تضيّع هذه الفرصة! 🔥</h2>
       <p>الأسعار المخفضة لفترة محدودة فقط. سارع بالاشتراك الآن وحقق هدفك في اختبار STEP 2026</p>
+      <div class="cta-countdown">
+        <span>ينتهي العرض خلال:</span>
+        <div class="cta-cd">
+          <div class="cta-cd-unit"><span id="ctaCdH">00</span><small>ساعة</small></div>
+          <span>:</span>
+          <div class="cta-cd-unit"><span id="ctaCdM">00</span><small>دقيقة</small></div>
+          <span>:</span>
+          <div class="cta-cd-unit"><span id="ctaCdS">00</span><small>ثانية</small></div>
+        </div>
+      </div>
       <a href="#courses" class="btn-cta">
         <i class="fas fa-rocket"></i> اشترك الآن بسعر مخفض
       </a>

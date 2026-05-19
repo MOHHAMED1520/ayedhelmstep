@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أكاديمية عايد للتدريب | ستيب 2026 — دورات STEP المتميزة</title>
+  <meta name="description" content="أفضل دورات اللغة الإنجليزية لاختبار STEP 2026 مع أحدث النماذج والمحاكيات. احصل على درجتك المستهدفة مع أكاديمية عايد للتدريب.">
+  <meta name="keywords" content="STEP 2026, اختبار ستيب, دورات انجليزي, أكاديمية عايد, تدريب ستيب">
+  <meta property="og:title" content="أكاديمية عايد للتدريب | ستيب 2026">
+  <meta property="og:description" content="أفضل دورات STEP 2026 مع أحدث النماذج والمحاكيات">
+  <meta property="og:image" content="images/logo.png">
+  <meta name="theme-color" content="#1a56db">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <meta property="og:url" content="https://ayed-academy.pages.dev">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="أكاديمية عايد للتدريب | ستيب 2026">
+  <meta name="twitter:description" content="أفضل دورات STEP 2026 مع أحدث النماذج والمحاكيات">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ══ ANNOUNCEMENT BAR ══ -->
+<div class="announce-bar">
+  <div class="announce-ticker">
+    <span class="announce-item"><span class="a-dot"></span>🔥 خصومات تصل إلى <span class="gold">70%</span> على جميع الدورات</span>
+    <span class="announce-item"><span class="a-dot"></span>🆕 تحديث 2026 — أحدث النماذج 50 · 51 · 52</span>
+    <span class="announce-item"><span class="a-dot"></span>⚡ وصول فوري بعد التأكيد</span>
+    <span class="announce-item"><span class="a-dot"></span>🎯 معدل نجاح +90% من طلابنا</span>
+    <span class="announce-item"><span class="a-dot"></span>🤖 مساعد ذكي متاح 24/7</span>
+    <span class="announce-item"><span class="a-dot"></span>🔥 خصومات تصل إلى <span class="gold">70%</span> على جميع الدورات</span>
+    <span class="announce-item"><span class="a-dot"></span>🆕 تحديث 2026 — أحدث النماذج 50 · 51 · 52</span>
+    <span class="announce-item"><span class="a-dot"></span>⚡ وصول فوري بعد التأكيد</span>
+    <span class="announce-item"><span class="a-dot"></span>🎯 معدل نجاح +90% من طلابنا</span>
+    <span class="announce-item"><span class="a-dot"></span>🤖 مساعد ذكي متاح 24/7</span>
+  </div>
+</div>
+
+<!-- ══ HEADER ══ -->
+<header class="header" id="header">
+  <div class="container">
+    <div class="header-inner">
+      <div class="logo-area">
+        <img src="images/logo.png" alt="أكاديمية عايد للتدريب" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-title">أكاديمية عايد للتدريب</span>
+          <span class="logo-sub">STEP 2026</span>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <a href="#courses">الدورات</a>
+        <a href="#features">المميزات</a>
+        <a href="#testimonials">آراء الطلاب</a>
+        <a href="#about">عن الأكاديمية</a>
+        <a href="#faq">الأسئلة الشائعة</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="cart-btn" onclick="toggleCart()">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-count" id="cartCount" data-count="0">0</span>
+          <span id="cartTotalLabel">السلة</span>
+        </button>
+        <button class="checkout-header-btn" onclick="goToCheckout()">
+          <i class="fas fa-bolt"></i> اشتري الآن
+        </button>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#courses"      onclick="closeMobileMenu()">الدورات</a>
+    <a href="#features"     onclick="closeMobileMenu()">المميزات</a>
+    <a href="#testimonials" onclick="closeMobileMenu()">آراء الطلاب</a>
+    <a href="#about"        onclick="closeMobileMenu()">عن الأكاديمية</a>
+    <a href="#faq"          onclick="closeMobileMenu()">الأسئلة الشائعة</a>
+  </div>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="home">
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <!-- Particles -->
+  <div class="hero-particles" id="heroParticles"></div>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        🚀 تحديث 2026 — أحدث النماذج متاحة الآن
+      </div>
+      <h1 class="hero-title">
+        أتقن اختبار STEP 2026
+        <span class="line2">وحقّق درجتك المستهدفة</span>
+      </h1>
+      <p class="hero-subtitle">
+        دورات متخصصة ومحدّثة مع أحدث النماذج والمحاكيات، شرح مبسط من الصفر، وخطط مذاكرة جاهزة تمشي عليها.
+        <br>انضم لأكثر من <strong style="color:#fde68a">1000 طالب</strong> حققوا أهدافهم معنا 🎓
+      </p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num" data-target="1000">0</span>
+          <span class="stat-label">طالب مسجّل</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">90%+</span>
+          <span class="stat-label">نسبة النجاح</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">3</span>
+          <span class="stat-label">دورات متخصصة</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">90</span>
+          <span class="stat-label">يوم وصول</span>
+        </div>
+      </div>
+      <div class="hero-btns">
+        <a href="#courses" class="btn-hero-primary">
+          <i class="fas fa-graduation-cap"></i> استعرض الدورات
+        </a>
+        <a href="https://t.me/Ayed_Academy_2026" target="_blank" class="btn-hero-secondary">
+          <i class="fab fa-telegram"></i> تواصل معنا
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,45 C240,90 480,0 720,45 C960,90 1200,0 1440,45 L1440,90 L0,90 Z" fill="#f0f4ff"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ══ TRUST BAR ══ -->
+<section class="trust-bar">
+  <div class="trust-scroll">
+    <div class="trust-item"><i class="fas fa-shield-alt"></i><span>محتوى موثوق ومحدّث</span></div>
+    <div class="trust-item"><i class="fas fa-sync-alt"></i><span>تحديثات 90 يوم مجاناً</span></div>
+    <div class="trust-item"><i class="fas fa-clock"></i><span>وصول فوري بعد التأكيد</span></div>
+    <div class="trust-item"><i class="fab fa-telegram"></i><span>دعم مباشر على تيليجرام</span></div>
+    <div class="trust-item"><i class="fas fa-certificate"></i><span>أحدث نماذج STEP 2026</span></div>
+    <div class="trust-item"><i class="fas fa-layer-group"></i><span>محاكيات الاختبار الحقيقي</span></div>
+    <div class="trust-item"><i class="fas fa-mobile-alt"></i><span>متوافق مع جميع الأجهزة</span></div>
+    <div class="trust-item"><i class="fas fa-robot"></i><span>مساعد ذكي 24/7</span></div>
+  </div>
+</section>
+
+<!-- ══ COURSES ══ -->
+<section class="courses-section" id="courses">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">📚 دوراتنا</span>
+      <h2 class="section-title">اختر الدورة المناسبة لك</h2>
+      <div class="title-underline"></div>
+      <p class="section-desc">ثلاث دورات مُصمَّمة بعناية لتناسب احتياجاتك — سواء كنت تبحث عن التميز أو السرعة أو الشمول</p>
+    </div>
+
+    <div class="courses-grid">
+
+      <!-- ═══ COURSE 1: المميزة ═══ -->
+      <div class="course-card featured reveal" id="course-card-1">
+        <div class="course-ribbon">الأكثر مبيعاً</div>
+        <div class="course-card-header gold">
+          <div class="course-icon-big">💎</div>
+          <div class="course-badges">
+            <span class="cbadge cbadge-type">المميزة</span>
+            <span class="cbadge cbadge-new">🆕 تحديث 2026</span>
+          </div>
+          <h3 class="course-card-title">دورة STEP المميزة</h3>
+          <p class="course-card-tagline">هدفك درجة عالية +90… فهنا البداية الصح!</p>
+        </div>
+        <div class="course-card-body">
+          <div class="price-block">
+            <div class="price-top">
+              <span class="price-now">249</span>
+              <span class="price-unit">ر.س</span>
+              <span class="price-was">749 ر.س</span>
+              <span class="discount-pill">خصم 67%</span>
+            </div>
+            <div class="price-save">💰 وفّر 500 ريال في هذا العرض!</div>
+          </div>
+          <div class="feat-list">
+            <div class="feat-row"><div class="fi"><i class="fas fa-check"></i></div><span>شرح مبسط من الصفر (Grammar + Reading + Listening)</span></div>
+            <div class="feat-row"><div class="fi"><i class="fas fa-check"></i></div><span>أحدث النماذج 50 – 51 – 52 ❤️‍🔥</span></div>
+            <div class="feat-row"><div class="fi"><i class="fas fa-check"></i></div><span>تدريبات + كويزات + محاكيات للاختبار</span></div>
+            <div class="feat-row"><div class="fi"><i class="fas fa-check"></i></div><span>خطة مذاكرة جاهزة تمشي عليها</span></div>
+            <div class="feat-row"><div class="fi"><i class="fas fa-check"></i></div><span>محتوى منظم يوفر وقتك ويختصر لك الطريق</span></div>
+            <div class="feat-row hot-feat"><div class="fi"><i class="fas fa-fire"></i></div><span>كل التحديثات + النماذج القادمة لمدة 90 يوم بدون رسوم إضافية!</span></div>
+          </div>
+          <div class="course-meta">
+            <span class="meta-tag"><i class="fas fa-clock"></i> 90 يوم وصول</span>
+            <span class="meta-tag"><i class="fas fa-sync"></i> تحديثات مستمرة</span>
+            <span class="meta-tag"><i class="fas fa-star"></i> مستوى شامل</span>
+          </div>
+          <div class="card-actions">
+            <button class="btn-add btn-add-gold" id="addBtn1" onclick="addToCart(1)">
+              <i class="fas fa-cart-plus"></i> أضف إلى السلة
+            </button>
+            <button class="btn-buy btn-buy-gold" onclick="buyNow(1)">
+              <i class="fas fa-bolt"></i> اشتري الآن
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ COURSE 2: المكثفة ═══ -->
+      <div class="course-card reveal" id="course-card-2" style="transition-delay:.1s">
+        <div class="course-card-header blue">
+          <div class="course-icon-big">⚡</div>
+          <div class="course-badges">
+            <span class="cbadge cbadge-type">المكثفة</span>
+            <span class="cbadge cbadge-new">🆕 تحديث 2026</span>
+          </div>
+          <h3 class="course-card-title">دورة STEP المكثفة</h3>
+          <p class="course-card-tagline">مثالية إذا وقتك ضيق وتحتاج نتيجة سريعة!</p>
+        </div>
+        <div class="course-card-body">
+          <div class="price-block">
+            <div class="price-top">
+              <span class="price-now">199</span>
+              <span class="price-unit">ر.س</span>
+              <span class="price-was">549 ر.س</span>
+              <span class="discount-pill">خصم 64%</span>
+            </div>
+            <div class="price-save">💰 وفّر 350 ريال في هذا العرض!</div>
+          </div>
+          <div class="feat-list">
+            <div class="feat-row"><div class="fi"><i class="fas fa-check"></i></div><span>مناسبة للمقبلين على الاختبار بفترة قصيرة</span></div>
+            <div class="feat-row"><div class="fi"><i class="fas fa-check"></i></div><span>خطة مكثفة تركز على الأسئلة الأكثر تكراراً</span></div>
+            <div class="feat-row"><div class="fi"><i class="fas fa-check"></i></div><span>تثبيت المعلومات بطريقة فعّالة وسريعة</span></div>
+            <div class="feat-row"><div class="fi"><i class="fas fa-check"></i></div><span>حل أكبر عدد ممكن من الأسئلة</span></div>
+            <div class="feat-row"><div class="fi"><i class="fas fa-check"></i></div><span>وصول المحتوى الكامل لمدة 90 يوم</span></div>
+          </div>
+          <div class="course-meta">
+            <span class="meta-tag"><i class="fas fa-clock"></i> 90 يوم وصول</span>
+            <span class="meta-tag"><i class="fas fa-bolt"></i> تعلّم سريع</span>
+            <span class="meta-tag"><i class="fas fa-fire"></i> مستوى مكثف</span>
+          </div>
+          <div class="card-actions">
+            <button class="btn-add btn-add-blue" id="addBtn2" onclick="addToCart(2)">
+              <i class="fas fa-cart-plus"></i> أضف إلى السلة
+            </button>
+            <button class="btn-buy btn-buy-blue" onclick="buyNow(2)">
+              <i class="fas fa-bolt"></i> اشتري الآن
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ COURSE 3: الشاملة ═══ -->
+      <div class="course-card reveal" id="course-card-3" style="transition-delay:.2s">
+        <div class="course-card-header green">
+          <div class="course-icon-big">📚</div>
+          <div class="course-badges">
+            <span class="cbadge cbadge-type">الشاملة</span>
+            <span class="cbadge cbadge-new">🆕 تحديث 2026</span>
+          </div>
+          <h3 class="course-card-title">دورة STEP الشاملة</h3>
+          <p class="course-card-tagline">ابنِ أساسك وراجع كل قسم خطوة بخطوة!</p>
+        </div>
+        <div class="course-card-body">
+          <div class="price-block">
+            <div class="price-top">
+              <span class="price-now">149</span>
+              <span class="price-unit">ر.س</span>
+              <span class="price-was">399 ر.س</span>
+              <span class="discount-pill">خصم 63%</span>
+            </div>
+            <div class="price-save">💰 وفّر 250 ريال في هذا العرض!</div>
+          </div>
+          <div class="feat-list">
+            <div class="feat-row"><div class="fi"><i class="fas fa-check"></i></div><span>شرح مفصل لكل أقسام الاختبار (Grammar – Reading – Listening – Structure)</span></div>
+            <div class="feat-row"><div class="fi"><i class="fas fa-check"></i></div><span>نماذج سابقة ومراجعة شاملة ومنظمة</span></div>
+            <div class="feat-row"><div class="fi"><i class="fas fa-check"></i></div><span>خطط مذاكرة مرنة (5 / 10 / 30 يوم)</span></div>
+            <div class="feat-row"><div class="fi"><i class="fas fa-check"></i></div><span>تحديثات مدى الحياة بدون رسوم إضافية ♾️</span></div>
+            <div class="feat-row"><div class="fi"><i class="fas fa-check"></i></div><span>مناسبة لبناء أساس قوي ومتين</span></div>
+          </div>
+          <div class="course-meta">
+            <span class="meta-tag"><i class="fas fa-infinity"></i> تحديثات مدى الحياة</span>
+            <span class="meta-tag"><i class="fas fa-list-alt"></i> خطط مرنة</span>
+            <span class="meta-tag"><i class="fas fa-book"></i> مستوى أساسي</span>
+          </div>
+          <div class="card-actions">
+            <button class="btn-add btn-add-green" id="addBtn3" onclick="addToCart(3)">
+              <i class="fas fa-cart-plus"></i> أضف إلى السلة
+            </button>
+            <button class="btn-buy btn-buy-green" onclick="buyNow(3)">
+              <i class="fas fa-bolt"></i> اشتري الآن
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /courses-grid -->
+
+    <!-- BUNDLE OFFER -->
+    <div class="bundle-offer reveal">
+      <div class="bundle-inner">
+        <div class="bundle-emoji">🎁</div>
+        <div class="bundle-text">
+          <h3>احصل على الحزمة الكاملة ووفّر أكثر!</h3>
+          <p>المميزة + المكثفة + الشاملة — كل ما تحتاجه للنجاح في STEP 2026</p>
+        </div>
+        <div class="bundle-pricing">
+          <span class="bundle-was">1,697 ر.س</span>
+          <span class="bundle-now">597</span>
+          <span style="color:#fde68a;font-size:14px;font-weight:700;">ريال سعودي</span>
+          <span class="bundle-save-badge">وفّر 1,100 ر.س</span>
+        </div>
+        <button class="btn-bundle" onclick="addAllToCart()">
+          <i class="fas fa-shopping-bag"></i> أضف الكل للسلة
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ FEATURES ══ -->
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">✨ لماذا نحن؟</span>
+      <h2 class="section-title white">مميزات تجعلنا الخيار الأول</h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feat-icon-wrap">🎯</div>
+        <h4>تركيز دقيق على المطلوب</h4>
+        <p>محتوى مُصمَّم خصيصاً لأسئلة STEP الفعلية مع التركيز على الأجزاء الأكثر تكراراً في الاختبار</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:.1s">
+        <div class="feat-icon-wrap">🖥️</div>
+        <h4>محاكيات الاختبار الحقيقي</h4>
+        <p>تدرّب على بيئة مشابهة 100% للاختبار الحقيقي وقِس مستواك بثقة قبل اليوم الكبير</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:.2s">
+        <div class="feat-icon-wrap">🔄</div>
+        <h4>تحديثات فورية مستمرة</h4>
+        <p>احصل على أحدث النماذج والأسئلة فور إضافتها — دون أي رسوم إضافية طوال فترة اشتراكك</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:.3s">
+        <div class="feat-icon-wrap">📱</div>
+        <h4>متوافق مع جميع الأجهزة</h4>
+        <p>ادرس من أي مكان وعلى أي جهاز — موبايل أو تابلت أو لابتوب بكل سهولة ومرونة</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:.4s">
+        <div class="feat-icon-wrap">📋</div>
+        <h4>خطط مذاكرة جاهزة</h4>
+        <p>خطط مذاكرة منظمة ومرنة (5 / 10 / 30 يوم) تناسب جدولك وتضمن تغطية جميع الأقسام</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:.5s">
+        <div class="feat-icon-wrap">🏆</div>
+        <h4>نتائج مضمونة ومثبتة</h4>
+        <p>أكثر من 90% من طلابنا يحققون درجاتهم المستهدفة — نتائج حقيقية لأشخاص حقيقيين</p>
+      </div>
+      <div class="feature-card reveal" style="transition-delay:.6s">
+        <div class="feat-icon-wrap">🤖</div>
+        <h4>مساعد ذكاء اصطناعي</h4>
+        <p>مساعد ذكي متاح 24/7 يجيب على استفساراتك ويساعدك في اختيار الدورة المناسبة لك</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testimonials-section" id="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">⭐ آراء الطلاب</span>
+      <h2 class="section-title">ماذا يقول طلابنا؟</h2>
+      <div class="title-underline"></div>
+      <p class="section-desc">آراء حقيقية من طلاب حققوا أهدافهم مع أكاديمية عايد</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testi-text">«الدورة المميزة غيّرت طريقة تفكيري في الاختبار! الشرح واضح جداً والمحاكيات تعطيك ثقة كبيرة. حصلت على 92 في STEP 🎉»</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#f59e0b,#d97706)">ن</div>
+          <div>
+            <div class="testi-name">نورة الشمري</div>
+            <div class="testi-score">✅ درجة 92 في STEP 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:.1s">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testi-text">«دورة المكثفة أنقذتني! كان عندي أسبوعان فقط للاختبار، وبفضل الخطة المكثفة نجحت بدرجة 78. خير من يوم كنت أتوقع!»</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#3b82f6,#2563eb)">م</div>
+          <div>
+            <div class="testi-name">محمد العتيبي</div>
+            <div class="testi-score">✅ درجة 78 في STEP 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:.2s">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testi-text">«الدورة الشاملة بنت عندي أساس قوي. شرح كل قسم بطريقة ذكية ومرتبة، والتحديثات مدى الحياة ميزة رائعة جداً!»</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#10b981,#059669)">س</div>
+          <div>
+            <div class="testi-name">سارة الدوسري</div>
+            <div class="testi-score">✅ درجة 85 في STEP 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:.3s">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testi-text">«ما صدقت درجتي! 88 في أول محاولة. المحاكيات تعطيك إحساس بيئة الاختبار الحقيقي، الأكاديمية من أفضل ما جربت.»</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)">ع</div>
+          <div>
+            <div class="testi-name">عبدالله القحطاني</div>
+            <div class="testi-score">✅ درجة 88 في STEP 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:.4s">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+        <p class="testi-text">«الحزمة الكاملة تستحق كل ريال! غطّيت كل المستويات وحصلت على 95. الشرح المبسط والمنظم فرّق كثير معي.»</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#ec4899,#db2777)">ر</div>
+          <div>
+            <div class="testi-name">ريم الزهراني</div>
+            <div class="testi-score">✅ درجة 95 في STEP 2026</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal" style="transition-delay:.5s">
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+        <p class="testi-text">«المساعد الذكي أجاب على كل أسئلتي في دقائق. الخدمة ممتازة والمحتوى محدّث باستمرار. أنصح الجميع بالاشتراك!»</p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:linear-gradient(135deg,#0088cc,#0077b6)">خ</div>
+          <div>
+            <div class="testi-name">خالد المطيري</div>
+            <div class="testi-score">✅ درجة 81 في STEP 2026</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal-left">
+        <span class="section-tag">🎓 عن الأكاديمية</span>
+        <h2>أكاديمية عايد للتدريب</h2>
+        <p class="about-lead">نؤمن بأن كل طالب يستحق أفضل إعداد ممكن لاختبار STEP 2026. صمّمنا دوراتنا بأعلى مستوى من الجودة والتحديث لنضمن لك التميز والنجاح.</p>
+        <ul class="about-list">
+          <li><div class="check-icon"><i class="fas fa-check"></i></div> خبرة متخصصة في اختبار STEP منذ سنوات</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div> محتوى محدّث فور صدور كل نموذج جديد</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div> أسعار تنافسية تناسب جميع الميزانيات</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div> دعم مباشر وسريع عبر تيليجرام</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div> مساعد ذكي يرد على استفساراتك 24/7</li>
+          <li><div class="check-icon"><i class="fas fa-check"></i></div> آلاف الطلاب حققوا أهدافهم معنا بنجاح</li>
+        </ul>
+        <a href="https://t.me/Ayed_Academy_2026" target="_blank" class="btn-tg">
+          <i class="fab fa-telegram"></i> تواصل معنا على تيليجرام
+        </a>
+      </div>
+      <div class="about-visual reveal-right">
+        <div class="about-stats-grid">
+          <div class="astat"><span class="astat-n">+1000</span><span class="astat-l">طالب ناجح</span></div>
+          <div class="astat"><span class="astat-n">3</span><span class="astat-l">دورات متخصصة</span></div>
+          <div class="astat"><span class="astat-n">90%+</span><span class="astat-l">نسبة النجاح</span></div>
+          <div class="astat"><span class="astat-n">2026</span><span class="astat-l">أحدث تحديث</span></div>
+        </div>
+        <div class="about-logo-card">
+          <img src="images/logo.png" alt="أكاديمية عايد للتدريب">
+          <p style="font-size:13px;color:var(--text-light);margin-top:12px;font-weight:700;">مؤسسة كريتيفا جلوبال ات</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">❓ الأسئلة الشائعة</span>
+      <h2 class="section-title">أسئلة يسألها الطلاب</h2>
+      <div class="title-underline"></div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>كيف أحصل على الدورة بعد الشراء؟</span>
+          <div class="faq-arrow"><i class="fas fa-chevron-down"></i></div>
+        </div>
+        <div class="faq-a">
+          بعد إتمام التسجيل وإرسال طلبك عبر تيليجرام، سيتواصل معك فريقنا فوراً لإرسال بيانات التحويل. بعد تأكيد الدفع يتم تفعيل دورتك خلال ساعات قليلة ✅
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>هل يمكنني شراء أكثر من دورة معاً؟</span>
+          <div class="faq-arrow"><i class="fas fa-chevron-down"></i></div>
+        </div>
+        <div class="faq-a">
+          بالتأكيد! يمكنك إضافة أكثر من دورة في السلة ودفع مبلغ واحد. كما يمكنك الاستفادة من عرض الحزمة الكاملة (الثلاث دورات) بسعر استثنائي ووفّر أكثر من 1,100 ريال.
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>ما هي مدة وصول المحتوى؟</span>
+          <div class="faq-arrow"><i class="fas fa-chevron-down"></i></div>
+        </div>
+        <div class="faq-a">
+          <strong>الدورة المميزة والمكثفة:</strong> 90 يوماً كاملة من تاريخ الاشتراك، تشمل جميع التحديثات الجديدة والنماذج القادمة.<br>
+          <strong>الدورة الشاملة:</strong> تحديثات مدى الحياة بدون أي رسوم إضافية.
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>ما الفرق بين الدورات الثلاث؟</span>
+          <div class="faq-arrow"><i class="fas fa-chevron-down"></i></div>
+        </div>
+        <div class="faq-a">
+          <strong>💎 المميزة:</strong> الأشمل والأكثر تفصيلاً، أحدث النماذج والمحاكيات، لمن يريد درجة +90.<br>
+          <strong>⚡ المكثفة:</strong> لمن وقته محدود ويحتاج تحضيراً سريعاً وفعّالاً قبل الاختبار.<br>
+          <strong>📚 الشاملة:</strong> لبناء أساس قوي ومراجعة تفصيلية خطوة بخطوة مع تحديثات مدى الحياة.
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>هل هناك دعم بعد الاشتراك؟</span>
+          <div class="faq-arrow"><i class="fas fa-chevron-down"></i></div>
+        </div>
+        <div class="faq-a">
+          نعم! يمكنك التواصل معنا في أي وقت عبر تيليجرام على <a href="https://t.me/Ayed_Academy_2026" target="_blank" style="color:var(--primary);font-weight:800;">@Ayed_Academy_2026</a> أو عبر المساعد الذكي المتاح في الموقع 24/7.
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>ما هي طريقة الدفع المتاحة؟</span>
+          <div class="faq-arrow"><i class="fas fa-chevron-down"></i></div>
+        </div>
+        <div class="faq-a">
+          اضغط "اشتري الآن" → أدخل بياناتك → ستنتقل تلقائياً لتيليجرام برسالة جاهزة → يرد عليك فريقنا بتفاصيل التحويل → بعد الدفع يُفعَّل اشتراكك فوراً ✅
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span>ما هو اختبار STEP وما أقسامه؟</span>
+          <div class="faq-arrow"><i class="fas fa-chevron-down"></i></div>
+        </div>
+        <div class="faq-a">
+          STEP (Standardized Test of English Proficiency) هو اختبار كفايات اللغة الإنجليزية المعتمد في المملكة العربية السعودية. يشمل أربعة أقسام رئيسية: <strong>Grammar</strong> (القواعد)، <strong>Reading</strong> (القراءة)، <strong>Listening</strong> (الاستماع)، و<strong>Structure</strong> (التركيب). الدرجة الكاملة 100.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content reveal">
+      <h2>لا تضيّع هذه الفرصة! 🔥</h2>
+      <p>الأسعار المخفضة لفترة محدودة فقط. سارع بالاشتراك الآن وحقق هدفك في اختبار STEP 2026</p>
+      <a href="#courses" class="btn-cta">
+        <i class="fas fa-rocket"></i> اشترك الآن بسعر مخفض
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="أكاديمية عايد" class="f-logo">
+        <p>أكاديمية عايد للتدريب متخصصة في إعداد الطلاب لاختبار كفايات اللغة الإنجليزية STEP 2026 بأحدث المناهج والنماذج.</p>
+        <p style="margin-top:8px">مؤسسة كريتيفا جلوبال ات</p>
+        <a href="https://t.me/Ayed_Academy_2026" target="_blank" class="f-tg-link">
+          <i class="fab fa-telegram"></i> @Ayed_Academy_2026
+        </a>
+      </div>
+      <div class="footer-col">
+        <h5>الدورات</h5>
+        <a href="#courses">دورة STEP المميزة 💎</a>
+        <a href="#courses">دورة STEP المكثفة ⚡</a>
+        <a href="#courses">دورة STEP الشاملة 📚</a>
+        <a href="#courses">حزمة الدورات الثلاث 🎁</a>
+      </div>
+      <div class="footer-col">
+        <h5>روابط سريعة</h5>
+        <a href="#features">المميزات</a>
+        <a href="#testimonials">آراء الطلاب</a>
+        <a href="#about">عن الأكاديمية</a>
+        <a href="#faq">الأسئلة الشائعة</a>
+      </div>
+      <div class="footer-col">
+        <h5>تواصل معنا</h5>
+        <a href="https://t.me/Ayed_Academy_2026" target="_blank">📱 تيليجرام الدعم</a>
+        <a href="https://t.me/Ayed_Academy_2026" target="_blank">💬 @Ayed_Academy_2026</a>
+        <a href="https://t.me/Ayed_Academy_2026" target="_blank">⚡ دعم فوري 24/7</a>
+        <a href="https://t.me/Ayed_Academy_2026" target="_blank">✅ تأكيد الاشتراكات</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 أكاديمية عايد للتدريب — جميع الحقوق محفوظة | مؤسسة كريتيفا جلوبال ات</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ CART SIDEBAR ══ -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-top">
+    <h3><i class="fas fa-shopping-cart"></i> سلة التسوق</h3>
+    <button class="close-cart-btn" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-body" id="cartBody">
+    <div class="cart-empty-state" id="cartEmpty">
+      <div class="empty-em">🛒</div>
+      <p>سلتك فارغة!</p>
+      <p style="font-size:13px;font-weight:500;color:var(--text-muted)">أضف دورة لتبدأ رحلتك</p>
+    </div>
+    <div class="cart-items-list" id="cartItems"></div>
+  </div>
+  <div class="cart-foot" id="cartFoot" style="display:none">
+    <div class="cart-totals">
+      <div class="cart-row"><span>المجموع الأصلي</span><span id="cOriginal">0 ر.س</span></div>
+      <div class="cart-row"><span>الخصم</span><span id="cDiscount" class="disc">-0 ر.س</span></div>
+      <div class="cart-row total"><span>المجموع الكلي</span><span id="cTotal" class="total-val">0 ر.س</span></div>
+    </div>
+    <button class="btn-go-checkout" onclick="goToCheckout()">
+      <i class="fas fa-credit-card"></i> إتمام الشراء
+    </button>
+    <button class="btn-keep-shopping" onclick="toggleCart()">
+      <i class="fas fa-arrow-right"></i> متابعة التسوق
+    </button>
+  </div>
+</div>
+
+<!-- ══ TOAST ══ -->
+<div class="toast" id="toast"><span class="toast-icon"></span><span id="toastMsg"></span></div>
+
+<!-- ══ FLOAT CART ══ -->
+<button class="float-cart" id="floatCart" onclick="toggleCart()">
+  <i class="fas fa-shopping-cart"></i>
+  <span class="float-count" id="floatCount">0</span>
+</button>
+
+<!-- ══════════════════════════════════════════
+     AI CHATBOT WIDGET - محاكي الذكاء الاصطناعي
+══════════════════════════════════════════ -->
+
+<!-- زر فتح المحادثة -->
+<button class="ai-chat-trigger" id="aiChatTrigger" onclick="toggleAIChat()" aria-label="فتح المساعد الذكي">
+  <div class="ai-trigger-inner">
+    <div class="ai-trigger-icon" id="aiTriggerIcon">
+      <i class="fas fa-robot"></i>
+    </div>
+    <div class="ai-trigger-pulse"></div>
+  </div>
+  <div class="ai-trigger-badge">
+    <span class="ai-badge-dot"></span>
+  </div>
+  <div class="ai-trigger-tooltip">مساعد ذكي 🤖</div>
+</button>
+
+<!-- نافذة المحادثة -->
+<div class="ai-chat-window" id="aiChatWindow" role="dialog" aria-label="نافذة المساعد الذكي">
+  <!-- Header -->
+  <div class="ai-chat-header">
+    <div class="ai-header-info">
+      <div class="ai-avatar-wrap">
+        <div class="ai-avatar"><i class="fas fa-robot"></i></div>
+        <span class="ai-status-dot"></span>
+      </div>
+      <div class="ai-header-text">
+        <span class="ai-name">مساعد أكاديمية عايد</span>
+        <span class="ai-status">متاح الآن • يرد فوراً</span>
+      </div>
+    </div>
+    <div class="ai-header-actions">
+      <button class="ai-header-btn" onclick="clearAIChat()" title="محادثة جديدة"><i class="fas fa-redo"></i></button>
+      <button class="ai-header-btn ai-close-btn" onclick="toggleAIChat()" title="إغلاق"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+
+  <!-- Quick Suggestions -->
+  <div class="ai-quick-suggestions" id="aiQuickSuggestions">
+    <p class="ai-qs-label">أسئلة شائعة:</p>
+    <div class="ai-qs-grid">
+      <button class="ai-qs-btn" onclick="sendQuickQ('ما الفرق بين الدورات؟')">📚 الفرق بين الدورات</button>
+      <button class="ai-qs-btn" onclick="sendQuickQ('ما هي أسعار الدورات؟')">💰 الأسعار</button>
+      <button class="ai-qs-btn" onclick="sendQuickQ('كيف أدفع ثمن الدورة؟')">💳 طريقة الدفع</button>
+      <button class="ai-qs-btn" onclick="sendQuickQ('كيف أحصل على الدورة بعد الشراء؟')">✅ بعد الشراء</button>
+      <button class="ai-qs-btn" onclick="sendQuickQ('ما هو اختبار STEP؟')">🎯 ما هو STEP؟</button>
+      <button class="ai-qs-btn" onclick="sendQuickQ('هل هناك ضمان لاسترداد المبلغ؟')">🛡️ الضمانات</button>
+    </div>
+  </div>
+
+  <!-- Messages -->
+  <div class="ai-chat-body" id="aiChatBody">
+    <!-- Welcome message injected by JS -->
+  </div>
+
+  <!-- Input -->
+  <div class="ai-chat-footer">
+    <div class="ai-input-wrap">
+      <textarea
+        class="ai-input"
+        id="aiInput"
+        placeholder="اكتب سؤالك هنا..."
+        rows="1"
+        onkeydown="handleAIKeydown(event)"
+        oninput="autoResizeAIInput(this)"
+        maxlength="500"
+      ></textarea>
+      <button class="ai-send-btn" id="aiSendBtn" onclick="sendAIMessage()" title="إرسال">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+    <p class="ai-footer-note">مدعوم بالذكاء الاصطناعي • أكاديمية عايد 2026</p>
+  </div>
+</div>
+
+<!-- Overlay for mobile -->
+<div class="ai-chat-overlay" id="aiChatOverlay" onclick="toggleAIChat()"></div>
+
+<script src="js/app.js"></script>
+<script src="js/chatbot.js"></script>
+</body>
+</html>

@@ -20,10 +20,11 @@ let currentPage = 'main';
 
 /* ══════════════════ PAGE MANAGEMENT ══════════════════ */
 const MAIN_SELECTORS = [
-  '.announce-bar','#header','.hero','.trust-bar','.courses-section',
-  '.features-section','.testimonials-section','.about-section',
+  '.urgency-bar','.announce-bar','#header','.hero','.trust-bar',
+  '.scroll-progress','.courses-section','.features-section',
+  '.testimonials-section','.about-section','.guarantee-section',
   '.faq-section','.cta-section','.footer',
-  '.cart-overlay','#cartSidebar','#toast','#floatCart'
+  '.cart-overlay','#cartSidebar','#toast','#floatCart','#backToTop'
 ];
 
 function showPage(pg) {
@@ -559,6 +560,18 @@ function closeMobileMenu() {
 window.addEventListener('scroll', ()=>{
   const h = document.getElementById('header');
   if (h) h.classList.toggle('scrolled', window.scrollY>60);
+
+  // Scroll progress bar
+  const prog = document.getElementById('scrollProgress');
+  if (prog) {
+    const scrollTop = window.scrollY;
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    prog.style.width = (docH > 0 ? (scrollTop/docH)*100 : 0) + '%';
+  }
+
+  // Back to top button
+  const btt = document.getElementById('backToTop');
+  if (btt) btt.classList.toggle('visible', window.scrollY > 400);
 });
 
 /* ══════════════════ SCROLL REVEAL ══════════════════ */
@@ -580,10 +593,157 @@ document.addEventListener('keydown', e=>{
   if (e.key==='Escape' && cartOpen) closeCart();
 });
 
+/* ══════════════════ COUNTDOWN TIMER ══════════════════ */
+function initCountdown() {
+  // Set end time: 23h 59m 59s from midnight of today (resets daily)
+  const now = new Date();
+  const midnight = new Date(now);
+  midnight.setHours(23, 59, 59, 0);
+  const endTime = midnight.getTime();
+
+  function tick() {
+    const diff = endTime - Date.now();
+    if (diff <= 0) return;
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    const pad = n => String(n).padStart(2,'0');
+
+    // Urgency bar counters
+    const cdH=document.getElementById('cdH'), cdM=document.getElementById('cdM'), cdS=document.getElementById('cdS');
+    if(cdH) cdH.textContent=pad(h);
+    if(cdM) cdM.textContent=pad(m);
+    if(cdS) cdS.textContent=pad(s);
+
+    // CTA section counters
+    const ctaH=document.getElementById('ctaCdH'), ctaM=document.getElementById('ctaCdM'), ctaS=document.getElementById('ctaCdS');
+    if(ctaH) ctaH.textContent=pad(h);
+    if(ctaM) ctaM.textContent=pad(m);
+    if(ctaS) ctaS.textContent=pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+}
+
+/* ══════════════════ LIVE VISITORS SIMULATION ══════════════════ */
+function initLiveVisitors() {
+  const el = document.getElementById('liveCount');
+  if (!el) return;
+  let base = 38 + Math.floor(Math.random()*25);
+  el.textContent = base;
+  setInterval(()=>{
+    const delta = Math.floor(Math.random()*5) - 2;
+    base = Math.max(22, Math.min(99, base + delta));
+    el.textContent = base;
+  }, 7000);
+}
+
+/* ══════════════════ SOCIAL PROOF ROTATOR ══════════════════ */
+function initSocialProof() {
+  const messages = [
+    'أحمد من الرياض اشترك للتو في دورة STEP المميزة 💎',
+    'نورة من جدة أضافت دورة STEP المكثفة للسلة ⚡',
+    'محمد من الدمام حقق درجة 88 بعد الدورة الشاملة 🎉',
+    'سارة من مكة اشتركت في الحزمة الكاملة 🎁',
+    'عبدالله من القصيم أنهى الدورة المميزة بدرجة 92 ⭐',
+    'ريم من الطائف تُكمل الدورة المكثفة الآن 📚',
+    'خالد من تبوك اشترى دورة STEP الشاملة 🏆',
+    'فاطمة من المدينة حصلت على درجة 85 بعد الاشتراك ✅',
+  ];
+  const el = document.getElementById('spText');
+  if (!el) return;
+  let i = 0;
+  setInterval(()=>{
+    i = (i+1) % messages.length;
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(-8px)';
+    setTimeout(()=>{
+      el.textContent = messages[i];
+      el.style.transition = 'all .4s ease';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 350);
+  }, 4500);
+}
+
+/* ══════════════════ ANIMATED STAT COUNTERS ══════════════════ */
+function initStatCounters() {
+  const counters = document.querySelectorAll('.stat-num[data-target]');
+  if (!counters.length) return;
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      const duration = 1600;
+      const step = 16;
+      const increment = target / (duration/step);
+      let current = 0;
+      const timer = setInterval(()=>{
+        current += increment;
+        if (current >= target) {
+          el.textContent = target >= 1000 ? '+' + target.toLocaleString('ar') : target;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current) >= 1000 ? '+' + Math.floor(current).toLocaleString('ar') : Math.floor(current);
+        }
+      }, step);
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(el => obs.observe(el));
+}
+
+/* ══════════════════ BACK TO TOP ══════════════════ */
+function initBackToTop() {
+  // Create button dynamically
+  if (!document.getElementById('backToTop')) {
+    const btn = document.createElement('button');
+    btn.id = 'backToTop';
+    btn.className = 'back-to-top';
+    btn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    btn.setAttribute('aria-label', 'العودة للأعلى');
+    btn.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+    document.body.appendChild(btn);
+  }
+}
+
+/* ══════════════════ STOCK BARS ══════════════════ */
+function injectStockBars() {
+  const stockData = {
+    1: { pct: 73, label: '73% من المقاعد ممتلئة' },
+    2: { pct: 58, label: '58% من المقاعد ممتلئة' },
+    3: { pct: 45, label: '45% من المقاعد ممتلئة' },
+  };
+  Object.entries(stockData).forEach(([id, {pct, label}])=>{
+    const card = document.getElementById('course-card-'+id);
+    if (!card) return;
+    const priceBlock = card.querySelector('.price-block');
+    if (!priceBlock) return;
+    const bar = document.createElement('div');
+    bar.className = 'stock-bar';
+    bar.innerHTML = `
+      <div class="stock-label">
+        <span>الإقبال الحالي</span>
+        <span class="stock-hot">🔥 ${label}</span>
+      </div>
+      <div class="stock-track">
+        <div class="stock-fill" style="width:${pct}%"></div>
+      </div>`;
+    priceBlock.after(bar);
+  });
+}
+
 /* ══════════════════ INIT ══════════════════ */
 document.addEventListener('DOMContentLoaded', ()=>{
   renderCart();
   initReveal();
+  initCountdown();
+  initLiveVisitors();
+  initSocialProof();
+  initStatCounters();
+  initBackToTop();
+  injectStockBars();
 
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click', e=>{

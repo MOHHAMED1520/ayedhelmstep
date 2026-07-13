@@ -1,22 +1,38 @@
 /* =====================================================
    أكاديمية عايد للتدريب | STEP 2026
-   Main App - Cart · Checkout · Telegram Direct
+   Main App — Cart · Checkout · Telegram Deep Link Fix
+   v3.0 — July 2026
    ===================================================== */
 
 /* ══════════════════ DATA ══════════════════ */
 const COURSES = {
-  1: { id:1, name:'دورة STEP المميزة',  fullName:'دورة STEP المميزة (تحديث 2026)',  icon:'💎', price:249, original:749,  access:'90 يوم',       color:'gold'  },
-  2: { id:2, name:'دورة STEP المكثفة',  fullName:'دورة STEP المكثفة (تحديث 2026)',  icon:'⚡', price:199, original:549,  access:'90 يوم',       color:'blue'  },
-  3: { id:3, name:'دورة STEP الشاملة',  fullName:'دورة STEP الشاملة (تحديث 2026)',  icon:'📚', price:149, original:399,  access:'مدى الحياة',  color:'green' }
+  1: { id:1, name:'دورة STEP المميزة',  fullName:'دورة STEP المميزة (تحديث 2026)',  icon:'💎', price:249, original:749,  access:'90 يوم',      color:'gold'  },
+  2: { id:2, name:'دورة STEP المكثفة',  fullName:'دورة STEP المكثفة (تحديث 2026)',  icon:'⚡', price:199, original:549,  access:'90 يوم',      color:'blue'  },
+  3: { id:3, name:'دورة STEP الشاملة',  fullName:'دورة STEP الشاملة (تحديث 2026)',  icon:'📚', price:149, original:399,  access:'مدى الحياة', color:'green' }
 };
 
-const TG_LINK = 'https://t.me/Ayed_Academy_2026';
+/* ══ Telegram Config ══
+   نستخدم https://t.me مع ?text= — هذا هو الـ Deep Link الصحيح
+   الذي يفتح تطبيق تيليجرام مباشرةً على الجهاز ويعبئ النص تلقائياً.
+   يعمل على: iOS / Android / Desktop / Web
+   لا نستخدم sms: أو روابط الـ SMS أبداً
+══ */
+const TG_USERNAME = 'Ayed_Academy_2026';
+const TG_BASE     = 'https://t.me/' + TG_USERNAME;
+
+/* بناء رابط تيليجرام Deep Link الصحيح */
+function buildTgDeepLink(message) {
+  /* encodeURIComponent يحوّل كل الأحرف العربية وغيرها
+     إلى صيغة %XX آمنة تعمل في كل المتصفحات */
+  const encoded = encodeURIComponent(message);
+  return TG_BASE + '?text=' + encoded;
+}
 
 /* ══════════════════ STATE ══════════════════ */
-let cart = [];
+let cart         = [];
 let customerData = {};
-let cartOpen = false;
-let currentPage = 'main';
+let cartOpen     = false;
+let currentPage  = 'main';
 
 /* ══════════════════ PAGE MANAGEMENT ══════════════════ */
 const MAIN_SELECTORS = [
@@ -29,51 +45,64 @@ const MAIN_SELECTORS = [
 
 function showPage(pg) {
   currentPage = pg;
-  const mains = MAIN_SELECTORS.map(s=>document.querySelector(s)).filter(Boolean);
+  const mains      = MAIN_SELECTORS.map(s=>document.querySelector(s)).filter(Boolean);
   const pgCheckout = document.getElementById('pgCheckout');
   const pgTelegram = document.getElementById('pgTelegram');
 
-  mains.forEach(el => el.style.display = pg==='main' ? '' : 'none');
-  if (pgCheckout) pgCheckout.style.display = pg==='checkout' ? 'block' : 'none';
-  if (pgTelegram) pgTelegram.style.display = pg==='telegram' ? 'block' : 'none';
+  mains.forEach(el => {
+    el.style.display = pg === 'main' ? '' : 'none';
+  });
+  if (pgCheckout) pgCheckout.style.display = pg === 'checkout' ? 'block' : 'none';
+  if (pgTelegram) pgTelegram.style.display = pg === 'telegram' ? 'block' : 'none';
 
-  window.scrollTo({ top:0, behavior:'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /* ══════════════════ CART ══════════════════ */
 function addToCart(id) {
-  if (cart.find(c=>c.id===id)) { showToast('⚠️ هذه الدورة في سلتك بالفعل!','warning'); return; }
-  cart.push({...COURSES[id]});
+  if (cart.find(c => c.id === id)) {
+    showToast('⚠️ هذه الدورة في سلتك بالفعل!', 'warning');
+    return;
+  }
+  cart.push({ ...COURSES[id] });
   renderCart();
   markCard(id, true);
-  showToast(`✅ تمت إضافة "${COURSES[id].name}" للسلة`,'success');
-  if (cart.length===1) openCart();
+  showToast(`✅ تمت إضافة "${COURSES[id].name}" للسلة`, 'success');
+  if (cart.length === 1) openCart();
 }
 
 function removeFromCart(id) {
-  cart = cart.filter(c=>c.id!==id);
+  cart = cart.filter(c => c.id !== id);
   renderCart();
   markCard(id, false);
 }
 
 function addAllToCart() {
-  let added=0;
-  [1,2,3].forEach(id=>{
-    if (!cart.find(c=>c.id===id)){ cart.push({...COURSES[id]}); markCard(id,true); added++; }
+  let added = 0;
+  [1,2,3].forEach(id => {
+    if (!cart.find(c => c.id === id)) {
+      cart.push({ ...COURSES[id] });
+      markCard(id, true);
+      added++;
+    }
   });
   renderCart();
-  if (added) { showToast(`✅ تمت إضافة ${added} دورة للسلة`,'success'); openCart(); }
-  else showToast('⚠️ جميع الدورات في سلتك!','warning');
+  if (added) {
+    showToast(`✅ تمت إضافة ${added} دورة للسلة`, 'success');
+    openCart();
+  } else {
+    showToast('⚠️ جميع الدورات في سلتك!', 'warning');
+  }
 }
 
 function buyNow(id) {
-  if (!cart.find(c=>c.id===id)) addToCart(id);
+  if (!cart.find(c => c.id === id)) addToCart(id);
   goToCheckout();
 }
 
 function markCard(id, inCart) {
-  const btn  = document.getElementById('addBtn'+id);
-  const card = document.getElementById('course-card-'+id);
+  const btn  = document.getElementById('addBtn' + id);
+  const card = document.getElementById('course-card-' + id);
   if (btn) {
     btn.innerHTML = inCart
       ? '<i class="fas fa-check-circle"></i> تمت الإضافة ✓'
@@ -85,34 +114,34 @@ function markCard(id, inCart) {
 
 /* ══════════════════ RENDER CART ══════════════════ */
 function renderCart() {
-  const total    = cart.reduce((s,c)=>s+c.price,0);
-  const original = cart.reduce((s,c)=>s+c.original,0);
+  const total    = cart.reduce((s, c) => s + c.price,    0);
+  const original = cart.reduce((s, c) => s + c.original, 0);
   const discount = original - total;
   const count    = cart.length;
 
   const cc = document.getElementById('cartCount');
   if (cc) {
-    cc.textContent=count;
-    cc.dataset.count=count;
+    cc.textContent  = count;
+    cc.dataset.count = count;
     cc.classList.remove('bump');
     void cc.offsetWidth;
     cc.classList.add('bump');
   }
 
   const lbl = document.getElementById('cartTotalLabel');
-  if (lbl) lbl.textContent = count>0 ? `${total} ر.س` : 'السلة';
+  if (lbl) lbl.textContent = count > 0 ? `${total} ر.س` : 'السلة';
 
-  const fc = document.getElementById('floatCart');
-  const fcc= document.getElementById('floatCount');
-  if (fc)  fc.classList.toggle('visible', count>0);
+  const fc  = document.getElementById('floatCart');
+  const fcc = document.getElementById('floatCount');
+  if (fc)  fc.classList.toggle('visible', count > 0);
   if (fcc) fcc.textContent = count;
 
   const empty = document.getElementById('cartEmpty');
   const items = document.getElementById('cartItems');
   const foot  = document.getElementById('cartFoot');
 
-  if (empty) empty.style.display = count===0 ? '' : 'none';
-  if (foot)  foot.style.display  = count>0   ? '' : 'none';
+  if (empty) empty.style.display = count === 0 ? '' : 'none';
+  if (foot)  foot.style.display  = count > 0   ? '' : 'none';
 
   if (items) {
     items.innerHTML = '';
@@ -142,9 +171,10 @@ function renderCart() {
 }
 
 /* ══════════════════ CART TOGGLE ══════════════════ */
-function openCart()  { cartOpen=true;  applyCartState(); }
-function closeCart() { cartOpen=false; applyCartState(); }
-function toggleCart(){ cartOpen=!cartOpen; applyCartState(); }
+function openCart()   { cartOpen = true;  applyCartState(); }
+function closeCart()  { cartOpen = false; applyCartState(); }
+function toggleCart() { cartOpen = !cartOpen; applyCartState(); }
+
 function applyCartState() {
   const sb = document.getElementById('cartSidebar');
   const ov = document.getElementById('cartOverlay');
@@ -155,21 +185,24 @@ function applyCartState() {
 
 /* ══════════════════ TOAST ══════════════════ */
 let toastTimer;
-function showToast(msg, type='info') {
+function showToast(msg, type = 'info') {
   const t  = document.getElementById('toast');
   const tm = document.getElementById('toastMsg');
   if (!t) return;
   clearTimeout(toastTimer);
-  const icons = { success:'✅', warning:'⚠️', info:'ℹ️', error:'❌' };
-  t.querySelector('.toast-icon').textContent = icons[type]||'ℹ️';
+  const icons = { success: '✅', warning: '⚠️', info: 'ℹ️', error: '❌' };
+  t.querySelector('.toast-icon').textContent = icons[type] || 'ℹ️';
   if (tm) tm.textContent = msg;
   t.className = `toast ${type} show`;
-  toastTimer = setTimeout(()=>t.classList.remove('show'), 3500);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3500);
 }
 
 /* ══════════════════ CHECKOUT ══════════════════ */
 function goToCheckout() {
-  if (cart.length===0){ showToast('🛒 السلة فارغة! اختر دورة أولاً','warning'); return; }
+  if (cart.length === 0) {
+    showToast('🛒 السلة فارغة! اختر دورة أولاً', 'warning');
+    return;
+  }
   closeCart();
   buildCheckoutPage();
   showPage('checkout');
@@ -177,21 +210,30 @@ function goToCheckout() {
 
 function goBackToMain() {
   showPage('main');
-  setTimeout(()=>{ const el=document.getElementById('courses'); if(el) el.scrollIntoView({behavior:'smooth'}); },200);
+  setTimeout(() => {
+    const el = document.getElementById('courses');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }, 200);
 }
-function goToTelegramPage()   { buildTelegramPage(); showPage('telegram'); }
-function goBackToCheckout()   { showPage('checkout'); }
+
+function goToTelegramPage() { buildTelegramPage(); showPage('telegram'); }
+function goBackToCheckout() { showPage('checkout'); }
 
 /* ══════════════════ BUILD CHECKOUT PAGE ══════════════════ */
 function buildCheckoutPage() {
   let pg = document.getElementById('pgCheckout');
-  if (!pg) { pg=document.createElement('div'); pg.id='pgCheckout'; pg.style.display='none'; document.body.appendChild(pg); }
+  if (!pg) {
+    pg = document.createElement('div');
+    pg.id = 'pgCheckout';
+    pg.style.display = 'none';
+    document.body.appendChild(pg);
+  }
 
-  const total    = cart.reduce((s,c)=>s+c.price,0);
-  const original = cart.reduce((s,c)=>s+c.original,0);
-  const discount = original-total;
+  const total    = cart.reduce((s, c) => s + c.price,    0);
+  const original = cart.reduce((s, c) => s + c.original, 0);
+  const discount = original - total;
 
-  const coursesHTML = cart.map(c=>`
+  const coursesHTML = cart.map(c => `
     <div class="sum-course">
       <div class="sum-course-em">${c.icon}</div>
       <div class="sum-course-info">
@@ -221,25 +263,23 @@ function buildCheckoutPage() {
     </div>
 
     <div class="pg-body">
-      <!-- Form -->
       <div class="form-card">
         <h2><i class="fas fa-user-edit"></i> بياناتك الشخصية</h2>
         <p class="form-sub">أدخل بياناتك بدقة لإتمام عملية التسجيل وتفعيل الدورة</p>
-
         <form id="checkoutForm" onsubmit="submitForm(event)" novalidate>
           <div class="fgroup">
             <label class="flabel">الاسم الكامل <span class="req">*</span></label>
-            <input type="text" id="fName" class="finput" placeholder="أدخل اسمك الكامل" required>
+            <input type="text" id="fName" class="finput" placeholder="أدخل اسمك الكامل" required autocomplete="name">
             <div class="ferr" id="errName"><i class="fas fa-exclamation-circle"></i> يرجى إدخال الاسم الكامل</div>
           </div>
           <div class="fgroup">
-            <label class="flabel">رقم التواصل (واتساب / جوال) <span class="req">*</span></label>
-            <input type="tel" id="fPhone" class="finput" placeholder="05XXXXXXXX" required>
+            <label class="flabel">رقم الجوال (واتساب) <span class="req">*</span></label>
+            <input type="tel" id="fPhone" class="finput" placeholder="05XXXXXXXX" required autocomplete="tel">
             <div class="ferr" id="errPhone"><i class="fas fa-exclamation-circle"></i> يرجى إدخال رقم جوال صحيح</div>
           </div>
           <div class="fgroup">
             <label class="flabel">البريد الإلكتروني <span class="req">*</span></label>
-            <input type="email" id="fEmail" class="finput" placeholder="example@email.com" required>
+            <input type="email" id="fEmail" class="finput" placeholder="example@email.com" required autocomplete="email">
             <div class="ferr" id="errEmail"><i class="fas fa-exclamation-circle"></i> يرجى إدخال بريد إلكتروني صحيح</div>
           </div>
           <div class="fgroup">
@@ -254,12 +294,11 @@ function buildCheckoutPage() {
             <div class="ferr" id="errScore"><i class="fas fa-exclamation-circle"></i> يرجى اختيار الدرجة المستهدفة</div>
           </div>
           <button type="submit" class="btn-submit">
-            <i class="fas fa-arrow-left"></i> المتابعة لإتمام الطلب
+            <i class="fab fa-telegram"></i> المتابعة لإرسال الطلب عبر تيليجرام
           </button>
         </form>
       </div>
 
-      <!-- Summary -->
       <div class="summary-panel">
         <div class="sum-card">
           <h3><i class="fas fa-receipt"></i> ملخص طلبك</h3>
@@ -271,12 +310,12 @@ function buildCheckoutPage() {
           </div>
         </div>
         <div class="trust-card">
-          <h4><i class="fas fa-shield-alt"></i> ضمانات الشراء</h4>
+          <h4><i class="fab fa-telegram"></i> كيف يتم الدفع؟</h4>
           <ul>
-            <li><i class="fas fa-check-circle"></i> وصول فوري بعد التأكيد</li>
-            <li><i class="fas fa-check-circle"></i> محتوى محدّث ومضمون</li>
-            <li><i class="fas fa-check-circle"></i> دعم مستمر عبر تيليجرام</li>
-            <li><i class="fas fa-check-circle"></i> تحديثات مجانية</li>
+            <li><i class="fas fa-check-circle"></i> أدخل بياناتك واضغط متابعة</li>
+            <li><i class="fas fa-check-circle"></i> سيفتح تيليجرام برسالة جاهزة</li>
+            <li><i class="fas fa-check-circle"></i> الفريق يرسل تفاصيل الدفع</li>
+            <li><i class="fas fa-check-circle"></i> بعد الدفع يُفعَّل وصولك فوراً</li>
           </ul>
         </div>
       </div>
@@ -286,20 +325,21 @@ function buildCheckoutPage() {
 /* ══════════════════ FORM VALIDATION ══════════════════ */
 function validateForm() {
   let ok = true;
+
   const name  = document.getElementById('fName').value.trim();
   const phone = document.getElementById('fPhone').value.trim();
   const email = document.getElementById('fEmail').value.trim();
   const score = document.getElementById('fScore').value;
 
-  const setErr = (id, inputId, show) => {
-    document.getElementById(id).classList.toggle('show', show);
+  const setErr = (errId, inputId, show) => {
+    document.getElementById(errId).classList.toggle('show', show);
     document.getElementById(inputId).classList.toggle('err', show);
   };
 
-  if (!name||name.length<3)                  { setErr('errName','fName',true);  ok=false; } else setErr('errName','fName',false);
-  if (!phone||phone.length<9)                { setErr('errPhone','fPhone',true); ok=false; } else setErr('errPhone','fPhone',false);
-  if (!email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setErr('errEmail','fEmail',true); ok=false; } else setErr('errEmail','fEmail',false);
-  if (!score)                                { setErr('errScore','fScore',true); ok=false; } else setErr('errScore','fScore',false);
+  if (!name  || name.length  < 3)                              { setErr('errName',  'fName',  true);  ok = false; } else setErr('errName',  'fName',  false);
+  if (!phone || phone.length < 9)                              { setErr('errPhone', 'fPhone', true);  ok = false; } else setErr('errPhone', 'fPhone', false);
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))    { setErr('errEmail', 'fEmail', true);  ok = false; } else setErr('errEmail', 'fEmail', false);
+  if (!score)                                                  { setErr('errScore', 'fScore', true);  ok = false; } else setErr('errScore', 'fScore', false);
 
   return ok;
 }
@@ -316,21 +356,50 @@ function submitForm(e) {
   goToTelegramPage();
 }
 
-/* ══════════════════ BUILD TELEGRAM PAGE (بدلاً من صفحة البنك) ══════════════════ */
+/* ══════════════════════════════════════════════════════
+   BUILD TELEGRAM MESSAGE — بناء رسالة التيليجرام
+══════════════════════════════════════════════════════ */
+function buildTelegramMessage(coursesList, total) {
+  return (
+    '🎓 طلب اشتراك جديد — أكاديمية عايد للتدريب | ستيب 2026\n' +
+    '━━━━━━━━━━━━━━━━━━━━━━━━━\n\n' +
+    '👤 الاسم: ' + customerData.name + '\n' +
+    '📱 الجوال: ' + customerData.phone + '\n' +
+    '📧 البريد: ' + customerData.email + '\n' +
+    '🎯 الدرجة المستهدفة: ' + customerData.score + '\n\n' +
+    '🛒 الدورات المطلوبة:\n' +
+    coursesList + '\n\n' +
+    '💰 الإجمالي: ' + total + ' ريال سعودي\n\n' +
+    '📌 أرجو إرسال تفاصيل الدفع وتأكيد الاشتراك.\n' +
+    'شكراً لأكاديمية عايد للتدريب 🙏'
+  );
+}
+
+/* ══════════════════════════════════════════════════════
+   BUILD TELEGRAM PAGE — صفحة إتمام الطلب عبر تيليجرام
+   الإصلاح الرئيسي: استخدام Deep Link الصحيح
+   https://t.me/USERNAME?text=ENCODED_MESSAGE
+   يعمل على كل الأجهزة والمتصفحات بدون حظر
+══════════════════════════════════════════════════════ */
 function buildTelegramPage() {
   let pg = document.getElementById('pgTelegram');
-  if (!pg) { pg=document.createElement('div'); pg.id='pgTelegram'; pg.style.display='none'; document.body.appendChild(pg); }
+  if (!pg) {
+    pg = document.createElement('div');
+    pg.id = 'pgTelegram';
+    pg.style.display = 'none';
+    document.body.appendChild(pg);
+  }
 
-  const total    = cart.reduce((s,c)=>s+c.price,0);
-  const original = cart.reduce((s,c)=>s+c.original,0);
-  const discount = original-total;
-  const courseNames = cart.map(c=>c.name).join(' + ');
+  const total      = cart.reduce((s, c) => s + c.price,    0);
+  const original   = cart.reduce((s, c) => s + c.original, 0);
+  const discount   = original - total;
+  const courseNames= cart.map(c => c.name).join(' + ');
+  const coursesList= cart.map(c => c.icon + ' ' + c.fullName + ' — ' + c.price + ' ر.س').join('\n');
 
-  // بناء نص الرسالة الجاهزة
-  const coursesList = cart.map(c=>`${c.icon} ${c.fullName} — ${c.price} ر.س`).join('\n');
-  const telegramMessage = buildTelegramMessage(coursesList, total);
-  const encodedMessage  = encodeURIComponent(telegramMessage);
-  const telegramURL     = `${TG_LINK}?text=${encodedMessage}`;
+  /* ══ بناء الرسالة والرابط — الإصلاح الجوهري ══ */
+  const msgText    = buildTelegramMessage(coursesList, total);
+  const deepLink   = buildTgDeepLink(msgText);          /* الرابط الصحيح */
+  const msgPreview = msgText.replace(/\n/g, '<br>');
 
   pg.innerHTML = `
     <div class="pg-header">
@@ -353,7 +422,7 @@ function buildTelegramPage() {
 
     <div class="tg-page-body">
 
-      <!-- ملخص الطلب -->
+      <!-- ملخص الطلب السريع -->
       <div class="order-mini">
         <div class="order-mini-top">
           <i class="fas fa-shopping-bag"></i>
@@ -361,100 +430,128 @@ function buildTelegramPage() {
           <span class="order-mini-total">${total} ر.س</span>
         </div>
         <div class="order-mini-info">
-          <span><i class="fas fa-user" style="color:var(--primary)"></i> ${customerData.name}</span>
-          <span><i class="fas fa-phone" style="color:var(--primary)"></i> ${customerData.phone}</span>
-          <span><i class="fas fa-bullseye" style="color:var(--primary)"></i> ${customerData.score}</span>
+          <span><i class="fas fa-user"></i> ${customerData.name}</span>
+          <span><i class="fas fa-phone"></i> ${customerData.phone}</span>
+          <span><i class="fas fa-bullseye"></i> ${customerData.score}</span>
         </div>
       </div>
 
-      <!-- بطاقة التلجرام الرئيسية -->
+      <!-- البطاقة الرئيسية -->
       <div class="tg-main-card">
+
+        <!-- Header البطاقة -->
         <div class="tg-card-header">
           <div class="tg-icon-wrap">
             <i class="fab fa-telegram"></i>
           </div>
-          <h2>الخطوة التالية: أرسل طلبك عبر تيليجرام</h2>
-          <p>اضغط الزر أدناه لفتح تيليجرام برسالة جاهزة تحتوي على جميع بياناتك وتفاصيل طلبك</p>
+          <h2>أرسل طلبك عبر تيليجرام</h2>
+          <p>اضغط الزر أدناه — سيفتح تيليجرام مباشرةً مع رسالتك جاهزة للإرسال</p>
         </div>
 
-        <!-- معاينة الرسالة الجاهزة -->
+        <!-- معاينة الرسالة -->
         <div class="tg-message-preview">
           <div class="tg-msg-label">
-            <i class="fas fa-eye"></i> معاينة الرسالة التي ستُرسل تلقائياً
+            <i class="fas fa-eye"></i>
+            معاينة الرسالة التي ستُرسَل تلقائياً
           </div>
-          <div class="tg-msg-content" id="tgMsgContent">${telegramMessage.replace(/\n/g,'<br>')}</div>
+          <div class="tg-msg-content">${msgPreview}</div>
         </div>
 
-        <!-- زر التلجرام الرئيسي -->
-        <a href="${telegramURL}" target="_blank" class="btn-tg-main" id="mainTgBtn"
-           onclick="handleTgClick()">
+        <!-- زر تيليجرام الرئيسي — Deep Link مُصحَّح -->
+        <a href="${deepLink}"
+           target="_blank"
+           rel="noopener"
+           class="btn-tg-main"
+           id="mainTgBtn"
+           onclick="handleTgClick(event, '${deepLink.replace(/'/g,"\\'")}')">
           <div class="tg-btn-inner">
             <i class="fab fa-telegram tg-btn-icon"></i>
             <div class="tg-btn-text">
-              <span class="tg-btn-title">أرسل طلبك الآن عبر تيليجرام</span>
-              <span class="tg-btn-sub">سيُفتح تيليجرام مع الرسالة الجاهزة تلقائياً</span>
+              <span class="tg-btn-title">افتح تيليجرام وأرسل الطلب الآن</span>
+              <span class="tg-btn-sub">الرسالة جاهزة — فقط اضغط إرسال في تيليجرام</span>
             </div>
             <i class="fas fa-arrow-left tg-btn-arrow"></i>
           </div>
         </a>
 
-        <!-- ماذا يحدث بعد الإرسال -->
+        <!-- تعليمات الخطوات -->
         <div class="tg-steps-guide">
-          <h4><i class="fas fa-info-circle"></i> ماذا يحدث بعد إرسال الرسالة؟</h4>
+          <h4><i class="fas fa-list-ol"></i> خطوات إتمام الطلب</h4>
           <div class="tg-steps-list">
             <div class="tg-step-item">
               <div class="tg-step-num">1</div>
               <div class="tg-step-info">
-                <strong>ستصلك بيانات التحويل البنكي</strong>
-                <span>يتواصل معك فريق الدعم مباشرة ويرسل تفاصيل الدفع</span>
+                <strong>اضغط الزر الأزرق أعلاه</strong>
+                <span>سيفتح تيليجرام مع الرسالة مُعبَّأة تلقائياً</span>
               </div>
             </div>
             <div class="tg-step-item">
               <div class="tg-step-num">2</div>
               <div class="tg-step-info">
-                <strong>قم بإتمام عملية التحويل</strong>
-                <span>حوّل المبلغ وأرسل صورة الإيصال للفريق</span>
+                <strong>اضغط "إرسال" في تيليجرام</strong>
+                <span>أرسل الرسالة لفريق الدعم في @Ayed_Academy_2026</span>
               </div>
             </div>
             <div class="tg-step-item">
               <div class="tg-step-num">3</div>
               <div class="tg-step-info">
+                <strong>استلم تفاصيل الدفع</strong>
+                <span>يرد عليك الفريق بتفاصيل التحويل خلال ساعة</span>
+              </div>
+            </div>
+            <div class="tg-step-item">
+              <div class="tg-step-num">4</div>
+              <div class="tg-step-info">
                 <strong>تفعيل الدورة فوراً ✅</strong>
-                <span>يتم تأكيد اشتراكك وتفعيل وصولك للدورة خلال ساعات قليلة</span>
+                <span>بعد تأكيد الدفع يُفعَّل وصولك للدورة مباشرةً</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- ملاحظات إضافية -->
+        <!-- ملاحظات -->
         <div class="tg-notes">
           <div class="tg-note-item">
             <i class="fas fa-clock"></i>
-            <span>الفريق يرد عادةً خلال ساعة أو أقل</span>
+            <span>الرد خلال ساعة أو أقل</span>
           </div>
           <div class="tg-note-item">
             <i class="fas fa-lock"></i>
-            <span>بياناتك محمية وآمنة تماماً</span>
+            <span>بياناتك محمية تماماً</span>
           </div>
           <div class="tg-note-item">
             <i class="fas fa-bolt"></i>
-            <span>وصول فوري للدورة بعد تأكيد الدفع</span>
+            <span>وصول فوري بعد الدفع</span>
           </div>
         </div>
 
-        <div class="tg-divider">أو تواصل معنا مباشرة</div>
+        <div class="tg-divider">لم يفتح تيليجرام؟</div>
 
-        <a href="${TG_LINK}" target="_blank" class="btn-tg-direct">
+        <!-- زر بديل للنسخ اليدوي -->
+        <button class="btn-copy-msg" id="copyMsgBtn" onclick="copyTgMessage()">
+          <i class="fas fa-copy"></i>
+          انسخ الرسالة وأرسلها يدوياً
+        </button>
+
+        <a href="${TG_BASE}" target="_blank" rel="noopener" class="btn-tg-direct">
           <i class="fab fa-telegram"></i>
-          @Ayed_Academy_2026
+          افتح @Ayed_Academy_2026 مباشرةً
         </a>
 
       </div>
     </div>`;
+
+  /* حفظ الرسالة للنسخ اليدوي */
+  pg._msgText  = msgText;
+  pg._deepLink = deepLink;
 }
 
-/* ══════════════════ HANDLE TG CLICK ══════════════════ */
-function handleTgClick() {
+/* ══════════════════════════════════════════════════════
+   HANDLE TG CLICK — معالجة الضغط على زر تيليجرام
+   المنطق: نفتح الرابط ونُظهر modal التأكيد
+══════════════════════════════════════════════════════ */
+function handleTgClick(e, link) {
+  /* تحديث حالة الزر */
   const btn = document.getElementById('mainTgBtn');
   if (btn) {
     btn.classList.add('sent');
@@ -463,65 +560,82 @@ function handleTgClick() {
     if (title) title.textContent = 'تم فتح تيليجرام ✅';
     if (sub)   sub.textContent   = 'أرسل الرسالة وانتظر رد الفريق';
   }
-  setTimeout(()=> showSuccessModal(cart.reduce((s,c)=>s+c.price,0)), 800);
+
+  /* إذا فشل الفتح التلقائي — نفتح يدوياً بعد تأخير */
+  const total = cart.reduce((s, c) => s + c.price, 0);
+  setTimeout(() => showSuccessModal(total, link), 700);
 }
 
-/* ══════════════════ TELEGRAM MESSAGE ══════════════════ */
-function buildTelegramMessage(coursesList, total) {
-  return `🎓 طلب اشتراك جديد - أكاديمية عايد للتدريب | ستيب 2026
+/* ══════════════════ COPY TG MESSAGE ══════════════════ */
+function copyTgMessage() {
+  const pg  = document.getElementById('pgTelegram');
+  const msg = pg?._msgText || '';
+  const btn = document.getElementById('copyMsgBtn');
 
-👤 الاسم: ${customerData.name}
-📱 رقم التواصل: ${customerData.phone}
-📧 البريد: ${customerData.email}
-🎯 الدرجة المستهدفة: ${customerData.score}
+  const doCopy = () => {
+    if (btn) {
+      btn.classList.add('copied');
+      btn.innerHTML = '<i class="fas fa-check"></i> تم النسخ! افتح تيليجرام والصق الرسالة';
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = '<i class="fas fa-copy"></i> انسخ الرسالة وأرسلها يدوياً';
+      }, 3000);
+    }
+    showToast('✅ تم نسخ الرسالة — الصقها في تيليجرام', 'success');
+  };
 
-🛒 الدورات المطلوبة:
-${coursesList}
-💰 المجموع: ${total} ريال سعودي
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(msg).then(doCopy).catch(() => {
+      fallbackCopy(msg);
+      doCopy();
+    });
+  } else {
+    fallbackCopy(msg);
+    doCopy();
+  }
+}
 
-📌 أرجو إرسال بيانات التحويل وتأكيد الاشتراك.
-شكراً لاختياركم أكاديمية عايد للتدريب | ستيب 2026 🙏`;
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand('copy'); } catch(_) {}
+  document.body.removeChild(ta);
 }
 
 /* ══════════════════ SUCCESS MODAL ══════════════════ */
-function showSuccessModal(total) {
+function showSuccessModal(total, deepLink) {
   if (document.querySelector('.success-modal-wrap')) return;
+  const link = deepLink || buildTgDeepLink('');
   const wrap = document.createElement('div');
   wrap.className = 'success-modal-wrap';
   wrap.innerHTML = `
     <div class="success-modal">
+      <button class="modal-close-x" onclick="this.closest('.success-modal-wrap').remove()" aria-label="إغلاق">
+        <i class="fas fa-times"></i>
+      </button>
       <div class="success-em">🎉</div>
-      <h2>تم إرسال طلبك بنجاح!</h2>
+      <h2>طلبك في الطريق!</h2>
       <p>
-        تم فتح تيليجرام برسالة جاهزة تحتوي على جميع بياناتك.<br>
-        انتظر رد فريق الدعم الذي سيرسل لك بيانات التحويل.<br>
-        بعد إتمام الدفع سيتم تفعيل دورتك فوراً ✅
+        تم فتح تيليجرام مع رسالتك الجاهزة.<br>
+        اضغط <strong>إرسال</strong> في تيليجرام وانتظر رد الفريق.<br>
+        بعد تأكيد الدفع يتم تفعيل دورتك فوراً ✅
       </p>
       <div class="success-amount">
-        <p>💰 إجمالي الطلب</p>
+        <p>💰 إجمالي طلبك</p>
         <strong>${total} ريال سعودي</strong>
       </div>
-      <a href="${TG_LINK}" target="_blank" class="btn-open-tg">
-        <i class="fab fa-telegram"></i> فتح تيليجرام مجدداً
+      <a href="${link}" target="_blank" rel="noopener" class="btn-open-tg">
+        <i class="fab fa-telegram"></i> أعِد فتح تيليجرام
       </a>
       <button class="btn-back-home" onclick="this.closest('.success-modal-wrap').remove(); showPage('main');">
-        العودة للصفحة الرئيسية
+        <i class="fas fa-home"></i> العودة للصفحة الرئيسية
       </button>
     </div>`;
   document.body.appendChild(wrap);
-}
-
-/* ══════════════════ COPY ══════════════════ */
-function copyVal(text, btn) {
-  navigator.clipboard.writeText(text).catch(()=>{
-    const ta=document.createElement('textarea');
-    ta.value=text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-  });
-  const orig = btn.innerHTML;
-  btn.classList.add('copied');
-  btn.innerHTML = '<i class="fas fa-check"></i> تم النسخ!';
-  setTimeout(()=>{ btn.classList.remove('copied'); btn.innerHTML=orig; }, 2200);
-  showToast('✅ تم نسخ النص بنجاح!','success');
 }
 
 /* ══════════════════ FAQ ══════════════════ */
@@ -530,10 +644,12 @@ function toggleFaq(qEl) {
   const answer = item.querySelector('.faq-a');
   const isOpen = item.classList.contains('open');
 
-  document.querySelectorAll('.faq-item').forEach(i=>{
+  document.querySelectorAll('.faq-item').forEach(i => {
     i.classList.remove('open');
-    const a=i.querySelector('.faq-a'); if(a) a.classList.remove('open');
+    const a = i.querySelector('.faq-a');
+    if (a) a.classList.remove('open');
   });
+
   if (!isOpen) {
     item.classList.add('open');
     if (answer) answer.classList.add('open');
@@ -549,98 +665,90 @@ function toggleMobileMenu() {
   const ic = btn?.querySelector('i');
   if (ic) ic.className = nav.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
 }
+
 function closeMobileMenu() {
   const nav = document.getElementById('mobileNav');
   const btn = document.getElementById('mobileMenuBtn');
   if (nav) nav.classList.remove('open');
-  const ic = btn?.querySelector('i'); if(ic) ic.className='fas fa-bars';
+  const ic = btn?.querySelector('i');
+  if (ic) ic.className = 'fas fa-bars';
 }
 
 /* ══════════════════ SCROLL EFFECTS ══════════════════ */
-window.addEventListener('scroll', ()=>{
+window.addEventListener('scroll', () => {
+  /* Header shadow */
   const h = document.getElementById('header');
-  if (h) h.classList.toggle('scrolled', window.scrollY>60);
+  if (h) h.classList.toggle('scrolled', window.scrollY > 60);
 
-  // Scroll progress bar
+  /* Scroll progress bar */
   const prog = document.getElementById('scrollProgress');
   if (prog) {
-    const scrollTop = window.scrollY;
     const docH = document.documentElement.scrollHeight - window.innerHeight;
-    prog.style.width = (docH > 0 ? (scrollTop/docH)*100 : 0) + '%';
+    prog.style.width = (docH > 0 ? (window.scrollY / docH) * 100 : 0) + '%';
   }
 
-  // Back to top button
+  /* Back-to-top */
   const btt = document.getElementById('backToTop');
   if (btt) btt.classList.toggle('visible', window.scrollY > 400);
-});
+}, { passive: true });
 
 /* ══════════════════ SCROLL REVEAL ══════════════════ */
 function initReveal() {
-  const obs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
         obs.unobserve(e.target);
       }
     });
-  }, { threshold:0.1, rootMargin:'0px 0px -40px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
 
-  document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el));
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => obs.observe(el));
 }
-
-/* ══════════════════ KEYBOARD ══════════════════ */
-document.addEventListener('keydown', e=>{
-  if (e.key==='Escape' && cartOpen) closeCart();
-});
 
 /* ══════════════════ COUNTDOWN TIMER ══════════════════ */
 function initCountdown() {
-  // Set end time: 23h 59m 59s from midnight of today (resets daily)
-  const now = new Date();
-  const midnight = new Date(now);
-  midnight.setHours(23, 59, 59, 0);
-  const endTime = midnight.getTime();
+  const now      = new Date();
+  const end      = new Date(now);
+  end.setHours(23, 59, 59, 0);
+  const endTime  = end.getTime();
 
   function tick() {
     const diff = endTime - Date.now();
     if (diff <= 0) return;
-    const h = Math.floor(diff / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    const pad = n => String(n).padStart(2,'0');
+    const h   = Math.floor(diff / 3600000);
+    const m   = Math.floor((diff % 3600000) / 60000);
+    const s   = Math.floor((diff % 60000)   / 1000);
+    const pad = n => String(n).padStart(2, '0');
 
-    // Urgency bar counters
-    const cdH=document.getElementById('cdH'), cdM=document.getElementById('cdM'), cdS=document.getElementById('cdS');
-    if(cdH) cdH.textContent=pad(h);
-    if(cdM) cdM.textContent=pad(m);
-    if(cdS) cdS.textContent=pad(s);
-
-    // CTA section counters
-    const ctaH=document.getElementById('ctaCdH'), ctaM=document.getElementById('ctaCdM'), ctaS=document.getElementById('ctaCdS');
-    if(ctaH) ctaH.textContent=pad(h);
-    if(ctaM) ctaM.textContent=pad(m);
-    if(ctaS) ctaS.textContent=pad(s);
+    ['cdH','cdM','cdS'].forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = pad([h, m, s][i]);
+    });
+    ['ctaCdH','ctaCdM','ctaCdS'].forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = pad([h, m, s][i]);
+    });
   }
   tick();
   setInterval(tick, 1000);
 }
 
-/* ══════════════════ LIVE VISITORS SIMULATION ══════════════════ */
+/* ══════════════════ LIVE VISITORS ══════════════════ */
 function initLiveVisitors() {
   const el = document.getElementById('liveCount');
   if (!el) return;
-  let base = 38 + Math.floor(Math.random()*25);
+  let base = 35 + Math.floor(Math.random() * 30);
   el.textContent = base;
-  setInterval(()=>{
-    const delta = Math.floor(Math.random()*5) - 2;
-    base = Math.max(22, Math.min(99, base + delta));
+  setInterval(() => {
+    base = Math.max(18, Math.min(99, base + Math.floor(Math.random() * 5) - 2));
     el.textContent = base;
-  }, 7000);
+  }, 8000);
 }
 
 /* ══════════════════ SOCIAL PROOF ROTATOR ══════════════════ */
 function initSocialProof() {
-  const messages = [
+  const msgs = [
     'أحمد من الرياض اشترك للتو في دورة STEP المميزة 💎',
     'نورة من جدة أضافت دورة STEP المكثفة للسلة ⚡',
     'محمد من الدمام حقق درجة 88 بعد الدورة الشاملة 🎉',
@@ -648,19 +756,19 @@ function initSocialProof() {
     'عبدالله من القصيم أنهى الدورة المميزة بدرجة 92 ⭐',
     'ريم من الطائف تُكمل الدورة المكثفة الآن 📚',
     'خالد من تبوك اشترى دورة STEP الشاملة 🏆',
-    'فاطمة من المدينة حصلت على درجة 85 بعد الاشتراك ✅',
+    'فاطمة من المدينة حصلت على درجة 85 ✅',
   ];
   const el = document.getElementById('spText');
   if (!el) return;
   let i = 0;
-  setInterval(()=>{
-    i = (i+1) % messages.length;
-    el.style.opacity = '0';
+  setInterval(() => {
+    i = (i + 1) % msgs.length;
+    el.style.opacity   = '0';
     el.style.transform = 'translateY(-8px)';
-    setTimeout(()=>{
-      el.textContent = messages[i];
+    setTimeout(() => {
+      el.textContent     = msgs[i];
       el.style.transition = 'all .4s ease';
-      el.style.opacity = '1';
+      el.style.opacity   = '1';
       el.style.transform = 'translateY(0)';
     }, 350);
   }, 4500);
@@ -670,22 +778,22 @@ function initSocialProof() {
 function initStatCounters() {
   const counters = document.querySelectorAll('.stat-num[data-target]');
   if (!counters.length) return;
-  const obs = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const el = entry.target;
+      const el     = entry.target;
       const target = parseInt(el.dataset.target);
-      const duration = 1600;
-      const step = 16;
-      const increment = target / (duration/step);
-      let current = 0;
-      const timer = setInterval(()=>{
-        current += increment;
-        if (current >= target) {
-          el.textContent = target >= 1000 ? '+' + target.toLocaleString('ar') : target;
-          clearInterval(timer);
+      const dur    = 1800;
+      const step   = 16;
+      const inc    = target / (dur / step);
+      let cur      = 0;
+      const t = setInterval(() => {
+        cur += inc;
+        if (cur >= target) {
+          el.textContent = '+' + target.toLocaleString('ar-SA');
+          clearInterval(t);
         } else {
-          el.textContent = Math.floor(current) >= 1000 ? '+' + Math.floor(current).toLocaleString('ar') : Math.floor(current);
+          el.textContent = '+' + Math.floor(cur).toLocaleString('ar-SA');
         }
       }, step);
       obs.unobserve(el);
@@ -696,27 +804,26 @@ function initStatCounters() {
 
 /* ══════════════════ BACK TO TOP ══════════════════ */
 function initBackToTop() {
-  // Create button dynamically
   if (!document.getElementById('backToTop')) {
     const btn = document.createElement('button');
-    btn.id = 'backToTop';
+    btn.id        = 'backToTop';
     btn.className = 'back-to-top';
     btn.innerHTML = '<i class="fas fa-arrow-up"></i>';
     btn.setAttribute('aria-label', 'العودة للأعلى');
-    btn.addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     document.body.appendChild(btn);
   }
 }
 
 /* ══════════════════ STOCK BARS ══════════════════ */
 function injectStockBars() {
-  const stockData = {
-    1: { pct: 73, label: '73% من المقاعد ممتلئة' },
-    2: { pct: 58, label: '58% من المقاعد ممتلئة' },
-    3: { pct: 45, label: '45% من المقاعد ممتلئة' },
+  const data = {
+    1: { pct: 73, label: '٧٣٪ من المقاعد ممتلئة' },
+    2: { pct: 58, label: '٥٨٪ من المقاعد ممتلئة' },
+    3: { pct: 45, label: '٤٥٪ من المقاعد ممتلئة' },
   };
-  Object.entries(stockData).forEach(([id, {pct, label}])=>{
-    const card = document.getElementById('course-card-'+id);
+  Object.entries(data).forEach(([id, { pct, label }]) => {
+    const card = document.getElementById('course-card-' + id);
     if (!card) return;
     const priceBlock = card.querySelector('.price-block');
     if (!priceBlock) return;
@@ -734,8 +841,13 @@ function injectStockBars() {
   });
 }
 
+/* ══════════════════ KEYBOARD ══════════════════ */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && cartOpen) closeCart();
+});
+
 /* ══════════════════ INIT ══════════════════ */
-document.addEventListener('DOMContentLoaded', ()=>{
+document.addEventListener('DOMContentLoaded', () => {
   renderCart();
   initReveal();
   initCountdown();
@@ -745,10 +857,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
   initBackToTop();
   injectStockBars();
 
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', e=>{
-      const t = document.querySelector(a.getAttribute('href'));
-      if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+  /* Smooth scroll for anchor links */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        closeMobileMenu();
+      }
     });
   });
 });

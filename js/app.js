@@ -19,6 +19,7 @@ const COURSES = {
 ══ */
 const TG_USERNAME = 'Ayed_Academy_2026';
 const TG_BASE     = 'https://t.me/' + TG_USERNAME;
+const TG_BASE_ALT = 'https://telegram.me/' + TG_USERNAME;
 
 /* بناء رابط تيليجرام Deep Link الصحيح */
 function buildTgDeepLink(message) {
@@ -460,10 +461,10 @@ function buildTelegramPage() {
         <!-- زر تيليجرام الرئيسي — Deep Link مُصحَّح -->
         <a href="${deepLink}"
            target="_blank"
-           rel="noopener"
+           rel="noopener noreferrer"
            class="btn-tg-main"
            id="mainTgBtn"
-           onclick="handleTgClick(event, '${deepLink.replace(/'/g,"\\'")}')">
+           onclick="event.preventDefault(); handleTgClick(event, '${deepLink.replace(/'/g,"\\'")}')">
           <div class="tg-btn-inner">
             <i class="fab fa-telegram tg-btn-icon"></i>
             <div class="tg-btn-text">
@@ -561,9 +562,21 @@ function handleTgClick(e, link) {
     if (sub)   sub.textContent   = 'أرسل الرسالة وانتظر رد الفريق';
   }
 
-  /* إذا فشل الفتح التلقائي — نفتح يدوياً بعد تأخير */
+  /* محاولة فتح تيليجرام بطرق متعددة للتوافق مع جميع الأجهزة */
+  try {
+    /* الطريقة الأولى: نفتح الرابط في نافذة جديدة */
+    const newWin = window.open(link, '_blank', 'noopener,noreferrer');
+    if (!newWin || newWin.closed || typeof newWin.closed === 'undefined') {
+      /* الطريقة الثانية: نوجّه المتصفح مباشرة */
+      window.location.href = link;
+    }
+  } catch(err) {
+    window.location.href = link;
+  }
+
+  /* عرض Modal التأكيد */
   const total = cart.reduce((s, c) => s + c.price, 0);
-  setTimeout(() => showSuccessModal(total, link), 700);
+  setTimeout(() => showSuccessModal(total, link), 800);
 }
 
 /* ══════════════════ COPY TG MESSAGE ══════════════════ */

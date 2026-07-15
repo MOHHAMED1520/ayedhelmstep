@@ -464,7 +464,7 @@ function buildTelegramPage() {
            rel="noopener noreferrer"
            class="btn-tg-main"
            id="mainTgBtn"
-           onclick="event.preventDefault(); handleTgClick(event, '${deepLink.replace(/'/g,"\\'")}')">
+           onclick="handleTgClickUI()">
           <div class="tg-btn-inner">
             <i class="fab fa-telegram tg-btn-icon"></i>
             <div class="tg-btn-text">
@@ -548,11 +548,10 @@ function buildTelegramPage() {
 }
 
 /* ══════════════════════════════════════════════════════
-   HANDLE TG CLICK — معالجة الضغط على زر تيليجرام
-   المنطق: نفتح الرابط ونُظهر modal التأكيد
+   HANDLE TG CLICK — تحديث الـ UI فقط
+   الرابط يفتح بشكل طبيعي عبر href بدون أي حجب
 ══════════════════════════════════════════════════════ */
-function handleTgClick(e, link) {
-  /* تحديث حالة الزر */
+function handleTgClickUI() {
   const btn = document.getElementById('mainTgBtn');
   if (btn) {
     btn.classList.add('sent');
@@ -561,23 +560,14 @@ function handleTgClick(e, link) {
     if (title) title.textContent = 'تم فتح تيليجرام ✅';
     if (sub)   sub.textContent   = 'أرسل الرسالة وانتظر رد الفريق';
   }
-
-  /* محاولة فتح تيليجرام بطرق متعددة للتوافق مع جميع الأجهزة */
-  try {
-    /* الطريقة الأولى: نفتح الرابط في نافذة جديدة */
-    const newWin = window.open(link, '_blank', 'noopener,noreferrer');
-    if (!newWin || newWin.closed || typeof newWin.closed === 'undefined') {
-      /* الطريقة الثانية: نوجّه المتصفح مباشرة */
-      window.location.href = link;
-    }
-  } catch(err) {
-    window.location.href = link;
-  }
-
-  /* عرض Modal التأكيد */
+  /* عرض Modal التأكيد بعد ثانية */
+  const pg    = document.getElementById('pgTelegram');
+  const link  = pg?._deepLink || TG_BASE;
   const total = cart.reduce((s, c) => s + c.price, 0);
-  setTimeout(() => showSuccessModal(total, link), 800);
+  setTimeout(() => showSuccessModal(total, link), 1000);
 }
+/* legacy compat */
+function handleTgClick(e, link) { handleTgClickUI(); }
 
 /* ══════════════════ COPY TG MESSAGE ══════════════════ */
 function copyTgMessage() {

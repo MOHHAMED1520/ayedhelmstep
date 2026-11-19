@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إتمام الطلب | أكاديمية عايد — STEP 2026</title>
+<meta name="description" content="أكمل طلب اشتراكك في دورات STEP من أكاديمية عايد — بياناتك وتفاصيل دورتك تُرسل كرسالة جاهزة إلى الدعم على تيليجرام لتأكيد الاشتراك واستلام بيانات التحويل.">
+<meta name="theme-color" content="#0B1E3D">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.checkout-wrap{padding:clamp(28px,4vw,52px) 0 clamp(48px,6vw,80px);position:relative;z-index:1}
+.co-grid{display:grid;grid-template-columns:1fr 400px;gap:clamp(20px,3vw,40px);align-items:start}
+@media(max-width:960px){.co-grid{grid-template-columns:1fr}}
+
+.crumbs{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted-2);margin-bottom:18px;flex-wrap:wrap}
+.crumbs a:hover{color:var(--gold)}
+.crumbs i{font-size:9px;opacity:.6}
+
+.co-title{font-size:clamp(22px,3vw,32px);font-weight:900;letter-spacing:-.6px;margin-bottom:8px}
+.co-sub{color:var(--muted);font-size:14px;margin-bottom:24px;line-height:1.9}
+
+/* stepper */
+.stepper{display:flex;align-items:center;gap:0;margin-bottom:26px;background:#fff;border:1px solid var(--line);
+  border-radius:var(--r-md);padding:14px 18px;box-shadow:var(--sh-1)}
+.stepz{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.stepz .n{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-size:12px;font-weight:900;
+  background:var(--paper-2);color:var(--muted);flex-shrink:0;transition:all .3s var(--ease)}
+.stepz b{font-size:12.5px;font-weight:800;color:var(--muted);white-space:nowrap;transition:color .3s}
+.stepz.on .n{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#2A1B02;box-shadow:0 6px 16px -8px rgba(255,172,30,.9)}
+.stepz.on b{color:var(--ink)}
+.stepz.done .n{background:var(--ok);color:#fff}
+.stepz.done b{color:var(--ok)}
+.stepz .line{flex:1;height:2px;background:var(--line-2);margin-inline:10px;border-radius:2px}
+@media(max-width:640px){.stepz b{display:none}.stepz .n{margin-inline:auto}}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(20px,3vw,30px);box-shadow:var(--sh-2)}
+.card-head{display:flex;align-items:center;gap:11px;margin-bottom:20px}
+.card-head .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:16px;
+  background:linear-gradient(140deg,var(--gold-3),#FFF9EC);border:1px solid rgba(255,172,30,.35);color:#8A5A05}
+.card-head h3{font-size:16.5px}
+.card-head p{font-size:12px;color:var(--muted-2);margin-top:1px}
+
+.field2{margin-bottom:16px}
+.field2 label{display:block;font-size:12.8px;font-weight:800;margin-bottom:7px}
+.field2 label .req{color:var(--danger)}
+.field2 input,.field2 select,.field2 textarea{
+  width:100%;padding:13px 15px;border:1.5px solid #E4E9F1;border-radius:13px;background:#FCFDFE;
+  font-size:14px;transition:border-color .25s,box-shadow .25s,background .25s}
+.field2 input:focus,.field2 select:focus,.field2 textarea:focus{outline:none;border-color:var(--gold);background:#fff;box-shadow:0 0 0 4px rgba(255,172,30,.14)}
+.field2 textarea{resize:vertical;min-height:74px;line-height:1.7}
+.field2 .err{display:none;font-size:11.5px;color:var(--danger);font-weight:700;margin-top:5px}
+.field2.bad input,.field2.bad select{border-color:var(--danger);background:#FFF7F6}
+.field2.bad .err{display:block}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.two{grid-template-columns:1fr}}
+
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--muted);line-height:1.8;
+  background:var(--paper);border:1px dashed var(--line-2);border-radius:13px;padding:13px 15px;margin-bottom:18px}
+.consent i{color:var(--gold);margin-top:3px}
+
+/* summary rail */
+.rail{position:sticky;top:calc(var(--head-h) + 16px);background:#fff;border:1px solid var(--line);
+  border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-2)}
+.rail-head{padding:16px 20px;background:linear-gradient(135deg,var(--ink),var(--ink-3));color:#fff;
+  display:flex;align-items:center;justify-content:space-between}
+.rail-head h3{font-size:14.5px;display:flex;align-items:center;gap:8px}
+.rail-head span{font-size:11px;background:rgba(255,255,255,.16);border-radius:999px;padding:3px 10px;font-weight:800}
+.rail-body{padding:16px 20px}
+.rl-item{display:flex;gap:11px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.rl-item:last-of-type{border-bottom:none}
+.rl-item img{width:48px;height:48px;border-radius:10px;object-fit:cover;object-position:top;flex-shrink:0}
+.rl-item .rl-inf{flex:1;min-width:0}
+.rl-item h5{font-size:12.5px;font-weight:800;line-height:1.45;margin-bottom:3px}
+.rl-item .rl-p{font-family:'Cairo';font-size:13.5px;font-weight:900}
+.rl-item .rl-p s{font-size:10.5px;color:var(--muted-2);font-weight:600;margin-inline-start:5px}
+.rl-item .rl-off{font-size:10px;font-weight:900;color:var(--ok);background:var(--ok-bg);border-radius:6px;padding:3px 7px;white-space:nowrap;align-self:center}
+.rail-foot{padding:16px 20px 20px;background:#FCFAF6;border-top:1px solid var(--line)}
+.pr-row{display:flex;justify-content:space-between;font-size:12.8px;color:var(--muted);font-weight:700;padding:4px 0}
+.pr-row.ok{color:var(--ok)}
+.pr-total{display:flex;justify-content:space-between;align-items:center;margin-top:9px;padding-top:12px;
+  border-top:1.5px dashed var(--line-2);font-weight:900;font-size:15px}
+.pr-total b{font-family:'Cairo';font-size:22px}
+.rail-empty{padding:36px 20px;text-align:center;color:var(--muted)}
+.rail-empty .big{font-size:38px;margin-bottom:10px}
+
+/* step 2 — telegram */
+.pay-panel{text-align:center}
+.tg-orb{width:76px;height:76px;border-radius:24px;margin:0 auto 16px;display:grid;place-items:center;font-size:34px;color:#fff;
+  background:linear-gradient(135deg,#2AABEE,#229ED9);box-shadow:0 18px 40px -18px rgba(42,171,238,.9)}
+.pay-panel h3{font-size:19px;margin-bottom:8px}
+.pay-panel .pd{font-size:13px;color:var(--muted);line-height:1.95;margin-bottom:18px;max-width:440px;margin-inline:auto}
+.msg-box{background:var(--paper);border:1.5px dashed var(--line-2);border-radius:14px;padding:16px;
+  text-align:start;font-size:12.3px;line-height:1.95;white-space:pre-wrap;color:#2E4159;
+  max-height:250px;overflow:auto;margin-bottom:16px;font-family:'Tajawal',sans-serif}
+.tg-send{display:flex;align-items:center;justify-content:center;gap:11px;width:100%;
+  background:linear-gradient(135deg,#2AABEE,#229ED9);color:#fff;border-radius:14px;padding:16px;
+  font-size:15.5px;font-weight:900;box-shadow:0 14px 34px -16px rgba(42,171,238,.95);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.tg-send:hover{transform:translateY(-3px);box-shadow:0 20px 44px -18px rgba(42,171,238,.95)}
+.tg-send i{font-size:20px}
+.copy-btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:10px;
+  background:rgba(11,30,61,.05);border:1px solid var(--line-2);border-radius:13px;padding:12px;
+  font-size:12.8px;font-weight:800;transition:background .25s}
+.copy-btn:hover{background:rgba(11,30,61,.09)}
+.pay-note{font-size:11.5px;color:var(--muted-2);margin-top:14px;line-height:1.85}
+.steps-note{display:grid;gap:8px;text-align:start;margin:18px 0;background:#FCFAF6;border:1px solid var(--line);border-radius:14px;padding:16px}
+.steps-note li{display:flex;gap:10px;font-size:12.4px;color:#3A4C63;line-height:1.7;align-items:flex-start}
+.steps-note .sn{width:20px;height:20px;border-radius:6px;background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#2A1B02;
+  font-size:10.5px;font-weight:900;display:grid;place-items:center;flex-shrink:0;margin-top:2px}
+
+.back-link{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:800;color:var(--muted);margin-top:16px}
+.back-link:hover{color:var(--ink)}
+.order-chip{display:inline-flex;align-items:center;gap:8px;background:var(--ok-bg);color:var(--ok);
+  border-radius:10px;padding:7px 13px;font-size:11.5px;font-weight:900;margin-bottom:14px}
+</style>
+</head>
+<body>
+<div class="page-glow"></div>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="dot-live"></span>
+    <span>خصومات <b>آخر العام</b> — ديسمبر 2026</span>
+    <span class="sep">·</span>
+    <span>تأكيد الطلب عبر تيليجرام</span>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="wrap head-in">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="شعار أكاديمية عايد" class="brand-mark">
+      <span class="brand-txt"><b>أكاديمية عايد</b><span>AYED ACADEMY</span></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html#courses">الدورات</a>
+      <a href="index.html#offer">عرض ديسمبر</a>
+      <a href="index.html#faq">الأسئلة</a>
+    </nav>
+    <div class="head-act">
+      <a href="index.html#courses" class="btn btn-line btn-sm"><i class="fa-solid fa-arrow-right"></i> متابعة التسوق</a>
+    </div>
+  </div>
+</header>
+
+<main class="checkout-wrap">
+  <div class="wrap">
+    <div class="crumbs">
+      <a href="index.html">الرئيسية</a><i class="fa-solid fa-chevron-left"></i>
+      <a href="index.html#courses">الدورات</a><i class="fa-solid fa-chevron-left"></i>
+      <span>إتمام الطلب</span>
+    </div>
+
+    <h1 class="co-title">إتمام الطلب</h1>
+    <p class="co-sub">خطوتان فقط — أدخل بياناتك، ثم أرسل طلبك الجاهز إلى الدعم على تيليجرام لتأكيد الاشتراك واستلام بيانات التحويل.</p>
+
+    <div class="stepper">
+      <div class="stepz on" id="st1"><span class="n">1</span><b>بياناتك</b><span class="line"></span></div>
+      <div class="stepz" id="st2"><span class="n">2</span><b>التأكيد عبر تيليجرام</b></div>
+    </div>
+
+    <div class="co-grid">
+      <div>
+        <!-- STEP 1 -->
+        <section class="card" id="step1">
+          <div class="card-head">
+            <div class="ic"><i class="fa-solid fa-user-pen"></i></div>
+            <div>
+              <h3>بيانات المتدرب</h3>
+              <p>تُستخدم لتأكيد اشتراكك وتفعيل حسابك</p>
+            </div>
+          </div>
+
+          <div class="two">
+            <div class="field2" id="f-name-wrap">
+              <label for="f-name">الاسم الكامل <span class="req">*</span></label>
+              <input id="f-name" type="text" placeholder="مثال: محمد أحمد العتيبي" autocomplete="name">
+              <span class="err">يرجى إدخال الاسم الكامل</span>
+            </div>
+            <div class="field2" id="f-phone-wrap">
+              <label for="f-phone">رقم الجوال <span class="req">*</span></label>
+              <input id="f-phone" type="tel" placeholder="05xxxxxxxx" dir="ltr" inputmode="numeric" autocomplete="tel">
+              <span class="err">أدخل رقم جوال صحيح يبدأ بـ 05</span>
+            </div>
+          </div>
+
+          <div class="two">
+            <div class="field2" id="f-email-wrap">
+              <label for="f-email">البريد الإلكتروني <span class="req">*</span></label>
+              <input id="f-email" type="email" placeholder="name@email.com" dir="ltr" autocomplete="email">
+              <span class="err">أدخل بريداً إلكترونياً صحيحاً</span>
+            </div>
+            <div class="field2" id="f-target-wrap">
+              <label for="f-target">الدرجة المستهدفة <span class="req">*</span></label>
+              <select id="f-target">
+                <option value="">— اختر الدرجة —</option>
+                <option>70 – 79</option>
+                <option>80 – 89</option>
+                <option>90 – 94</option>
+                <option>95 – 100</option>
+              </select>
+              <span class="err">اختر الدرجة المستهدفة</span>
+            </div>
+          </div>
+
+          <div class="field2">
+            <label for="f-note">ملاحظة إضافية (اختياري)</label>
+            <textarea id="f-note" placeholder="مثال: موعد اختباري 20 ديسمبر، أفضّل الشرح بالفيديو..."></textarea>
+          </div>
+
+          <div class="consent">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>بياناتك تُستخدم فقط لتفعيل اشتراكك وتأكيد الطلب، ويتم إرسالها كرسالة جاهزة إلى حساب الدعم الرسمي على تيليجرام <strong>@Ayed_Academy_2026</strong>.</span>
+          </div>
+
+          <button class="btn btn-gold btn-block" id="toStep2">
+            <i class="fa-solid fa-arrow-left"></i> متابعة إلى التأكيد
+          </button>
+        </section>
+
+        <!-- STEP 2 -->
+        <section class="card hidden" id="step2" style="display:none">
+          <div class="pay-panel">
+            <div class="tg-orb"><i class="fa-brands fa-telegram"></i></div>
+            <div class="order-chip" id="orderChip"><i class="fa-solid fa-receipt"></i> رقم الطلب</div>
+            <h3>أرسل طلبك لتأكيد الاشتراك</h3>
+            <p class="pd">
+              اضغط الزر أدناه ليُفتح حساب الدعم على تيليجرام برسالة جاهزة تحتوي اسمك، دورتك المختارة، السعر بعد الخصم،
+              وتفاصيل طلبك. سيرسل لك فريق الدعم بيانات التحويل البنكي ويؤكد اشتراكك مباشرة.
+            </p>
+
+            <div class="msg-box" id="msgBox"></div>
+
+            <a class="tg-send" id="tgSend" href="#" target="_blank" rel="noopener">
+              <i class="fa-brands fa-telegram"></i> إرسال الطلب على تيليجرام
+            </a>
+            <button class="copy-btn" id="copyMsg"><i class="fa-regular fa-copy"></i> نسخ نص الطلب</button>
+
+            <ul class="steps-note">
+              <li><span class="sn">1</span><span>افتح الزر أعلاه وسيظهر حساب <strong>@Ayed_Academy_2026</strong> مع رسالتك معبّأة.</span></li>
+              <li><span class="sn">2</span><span>أرسل الرسالة، وسيصلك رد فريق الدعم ببيانات الحساب البنكي.</span></li>
+              <li><span class="sn">3</span><span>حوّل المبلغ وأرسل صورة الإيصال — يتم تفعيل اشتراكك فوراً.</span></li>
+            </ul>
+
+            <p class="pay-note">
+              لم يُفتح تيليجرام؟ استخدم زر النسخ ثم أرسل النص يدوياً إلى
+              <a href="https://t.me/Ayed_Academy_2026" target="_blank" rel="noopener" style="color:var(--gold);font-weight:800">@Ayed_Academy_2026</a>.
+            </p>
+
+            <button class="back-link" id="backStep1"><i class="fa-solid fa-arrow-right"></i> تعديل البيانات</button>
+          </div>
+        </section>
+      </div>
+
+      <!-- RAIL -->
+      <aside class="rail">
+        <div class="rail-head">
+          <h3><i class="fa-solid fa-bag-shopping"></i> ملخص الطلب</h3>
+          <span id="railCount">0 دورة</span>
+        </div>
+        <div class="rail-body" id="railBody"></div>
+        <div class="rail-foot" id="railFoot"></div>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-bottom" style="border:none;padding:0">
+      <span>© <span data-year>2026</span> أكاديمية عايد للتدريب — جميع الحقوق محفوظة.</span>
+      <span>تأكيد الطلبات: <a href="https://t.me/Ayed_Academy_2026" target="_blank" rel="noopener">@Ayed_Academy_2026</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"><span class="dot"></span><span id="toastText"></span></div>
+
+<script src="assets/store.js"></script>
+<script>
+const params = new URLSearchParams(location.search);
+
+/* If a course id is passed and cart is empty, pre-add it */
+if (params.get('course') && !Cart.count()) Cart.add(params.get('course'));
+
+const railBody = document.getElementById('railBody');
+const railFoot = document.getElementById('railFoot');
+
+function paintRail() {
+  const items = Cart.items();
+  document.getElementById('railCount').textContent = Cart.count() + ' دورة';
+
+  if (!items.length) {
+    railBody.innerHTML = `
+      <div class="rail-empty">
+        <div class="big">🛍️</div>
+        <h4 style="font-size:14px;margin-bottom:6px">لا توجد دورات في الطلب</h4>
+        <p style="font-size:12px;margin-bottom:14px">أضف دورة من المتجر للمتابعة</p>
+        <a href="index.html#courses" class="btn btn-gold btn-sm">تصفح الدورات</a>
+      </div>`;
+    railFoot.innerHTML = '';
+    document.getElementById('toStep2').disabled = true;
+    return;
+  }
+
+  document.getElementById('toStep2').disabled = false;
+  railBody.innerHTML = items.map(c => `
+    <div class="rl-item">
+      <img src="${c.img}" alt="${c.name}">
+      <div class="rl-inf">
+        <h5>${c.shortName}</h5>
+        <div class="rl-p">${STORE.money(c.price)} <small style="font-size:10.5px;font-weight:800;color:var(--muted)">ريال</small> <s>${STORE.money(c.old)}</s></div>
+      </div>
+      <span class="rl-off">−${STORE.discountOf(c)}%</span>
+    </div>`).join('');
+
+  railFoot.innerHTML = `
+    <div class="pr-row"><span>الإجمالي قبل الخصم</span><span>${STORE.money(Cart.oldTotal())} ريال</span></div>
+    <div class="pr-row ok"><span>خصم آخر العام (${STORE.campaign.month})</span><span>− ${STORE.money(Cart.saved())} ريال</span></div>
+    <div class="pr-total"><span>الإجمالي المستحق</span><b>${STORE.money(Cart.total())} ريال</b></div>
+    <div class="note-mini" style="font-size:11px;color:var(--muted-2);text-align:center;margin-top:9px">يُرسل الطلب كرسالة جاهزة لتأكيد الدفع</div>`;
+}
+
+paintRail();
+
+/* ---------- validation ---------- */
+const fields = {
+  name: document.getElementById('f-name'),
+  phone: document.getElementById('f-phone'),
+  email: document.getElementById('f-email'),
+  target: document.getElementById('f-target'),
+  note: document.getElementById('f-note')
+};
+
+function markBad(key, bad) {
+  const wrap = document.getElementById('f-' + key + '-wrap');
+  if (wrap) wrap.classList.toggle('bad', bad);
+}
+
+function validate() {
+  let ok = true;
+  const name = fields.name.value.trim();
+  const phone = fields.phone.value.replace(/[\s-]/g, '');
+  const email = fields.email.value.trim();
+  const target = fields.target.value;
+
+  markBad('name', !name || name.length < 3); if (!name || name.length < 3) ok = false;
+  markBad('phone', !/^(?:\+?966|0)?5\d{8}$/.test(phone)); if (!/^(?:\+?966|0)?5\d{8}$/.test(phone)) ok = false;
+  markBad('email', !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)); if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) ok = false;
+  markBad('target', !target); if (!target) ok = false;
+  return ok;
+}
+
+['name', 'phone', 'email', 'target'].forEach(k => {
+  const el = fields[k];
+  el.addEventListener('input', () => {
+    const wrap = document.getElementById('f-' + k + '-wrap');
+    if (wrap && wrap.classList.contains('bad')) wrap.classList.remove('bad');
+  });
+  el.addEventListener('change', () => {
+    const wrap = document.getElementById('f-' + k + '-wrap');
+    if (wrap && wrap.classList.contains('bad')) wrap.classList.remove('bad');
+  });
+});
+
+/* ---------- step transitions ---------- */
+let order = { id: null, msg: '' };
+
+function toStep2() {
+  if (!Cart.count()) { UI.toast('لا توجد دورات في الطلب'); return; }
+  if (!validate()) {
+    UI.toast('يرجى تصحيح الحقول المطلوبة');
+    const firstBad = document.querySelector('.field2.bad input, .field2.bad select');
+    if (firstBad) firstBad.focus();
+    return;
+  }
+
+  const now = new Date();
+  const dateStr = now.toLocaleString('ar-SA-u-nu-latn-ca-gregory', {
+    dateStyle: 'medium', timeStyle: 'short', timeZone: 'Asia/Riyadh'
+  });
+
+  if (!order.id) order.id = makeOrderId();
+
+  const customer = {
+    name: fields.name.value.trim(),
+    phone: fields.phone.value.trim(),
+    email: fields.email.value.trim(),
+    target: fields.target.value,
+    note: fields.note.value.trim(),
+    orderId: order.id,
+    date: dateStr
+  };
+
+  order.msg = buildOrderMessage(customer);
+
+  document.getElementById('msgBox').textContent = order.msg;
+  document.getElementById('orderChip').innerHTML = '<i class="fa-solid fa-receipt"></i> رقم الطلب: ' + order.id;
+
+  const text = encodeURIComponent(order.msg);
+  document.getElementById('tgSend').href = STORE.brand.telegramUrl + '?text=' + text;
+
+  document.getElementById('step1').style.display = 'none';
+  document.getElementById('step2').style.display = '';
+  document.getElementById('st1').className = 'stepz done';
+  document.getElementById('st2').className = 'stepz on';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  location.hash = 'confirm';
+}
+
+document.getElementById('toStep2').addEventListener('click', toStep2);
+
+document.getElementById('backStep1').addEventListener('click', () => {
+  document.getElementById('step2').style.display = 'none';
+  document.getElementById('step1').style.display = '';
+  document.getElementById('st1').className = 'stepz on';
+  document.getElementById('st2').className = 'stepz';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+/* ---------- copy ---------- */
+document.getElementById('copyMsg').addEventListener('click', async () => {
+  const text = order.msg || document.getElementById('msgBox').textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+    UI.toast('تم نسخ نص الطلب ✓');
+  } catch (e) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); UI.toast('تم نسخ نص الطلب ✓'); }
+    catch (_) { UI.toast('تعثر النسخ — انسخ النص يدوياً'); }
+    ta.remove();
+  }
+});
+
+/* re-render rail if cart changes in another tab */
+window.addEventListener('storage', () => { Cart.load(); paintRail(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تفاصيل الدورة | أكاديمية عايد — STEP 2026</title>
+<meta name="description" content="تعرّف على مميزات ومحتوى دورة STEP من أكاديمية عايد بالتفصيل — الوحدات، الدروس، ما ستحصل عليه، والنتائج المتوقعة. خصومات آخر العام ديسمبر 2026.">
+<meta name="theme-color" content="#0B1E3D">
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* ---------- Course detail page ---------- */
+.cd-hero{position:relative;z-index:1;padding:clamp(24px,4vw,44px) 0 clamp(40px,5vw,64px);
+  background:linear-gradient(160deg,#081A34 0%,var(--ink) 45%,#14345F 100%);color:#fff;overflow:hidden}
+.cd-hero::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(620px 380px at 84% 0%,rgba(255,172,30,.20),transparent 66%)}
+.cd-hero::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:.4;
+  background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:62px 62px;
+  -webkit-mask-image:radial-gradient(circle at 40% 20%,#000,transparent 80%);
+  mask-image:radial-gradient(circle at 40% 20%,#000,transparent 80%)}
+.crumbs{position:relative;z-index:2;display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.55);margin-bottom:22px;flex-wrap:wrap}
+.crumbs a:hover{color:var(--gold-2)}
+.crumbs i{font-size:9px;opacity:.6}
+.ccrumbs-sep{opacity:.4}
+.cd-grid{position:relative;z-index:2;display:grid;grid-template-columns:1fr 380px;gap:clamp(24px,4vw,52px);align-items:start}
+@media(max-width:980px){.cd-grid{grid-template-columns:1fr}}
+
+.cd-eyebrow{display:inline-flex;align-items:center;gap:9px;background:rgba(255,172,30,.16);border:1px solid rgba(255,172,30,.42);
+  color:var(--gold-2);border-radius:999px;padding:7px 15px;font-size:12px;font-weight:800;margin-bottom:16px}
+.cd-hero h1{font-size:clamp(26px,3.6vw,44px);font-weight:900;line-height:1.3;letter-spacing:-.8px;margin-bottom:14px}
+.cd-hero .lead{font-size:15px;color:rgba(255,255,255,.76);line-height:1.95;max-width:600px;margin-bottom:22px}
+
+.cd-facts{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.fact{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+  border-radius:12px;padding:9px 14px;font-size:12.5px;font-weight:800}
+.fact i{color:var(--gold-2);font-size:12px}
+.fact small{color:rgba(255,255,255,.5);font-weight:700}
+
+/* Inline purchase panel (hero right) */
+.buy-panel{
+  position:sticky;top:calc(var(--head-h) + 18px);
+  background:#fff;border-radius:var(--r-lg);overflow:hidden;color:var(--ink);
+  box-shadow:0 40px 90px -40px rgba(0,0,0,.8);border:1px solid rgba(255,255,255,.5);
+}
+.bp-media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--ink)}
+.bp-media img{width:100%;height:100%;object-fit:cover;object-position:top}
+.bp-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,20,40,.08),rgba(8,20,40,.5))}
+.bp-flag{position:absolute;top:12px;inset-inline-start:12px;z-index:2;background:linear-gradient(135deg,var(--gold),var(--gold-2));
+  color:#2A1B02;border-radius:999px;padding:5px 12px;font-size:10.5px;font-weight:900}
+.bp-body{padding:22px}
+.bp-label{font-size:11px;font-weight:900;letter-spacing:1.4px;color:var(--muted-2);text-transform:uppercase;margin-bottom:10px}
+.bp-price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.bp-price .now{font-family:'Cairo';font-size:38px;font-weight:900;line-height:1;color:var(--ink)}
+.bp-price .now small{font-size:15px;font-weight:800;color:var(--muted)}
+.bp-price .was{font-size:15px;color:var(--muted-2);text-decoration:line-through;font-weight:700}
+.bp-save{display:inline-flex;align-items:center;gap:7px;background:var(--ok-bg);color:var(--ok);border-radius:10px;
+  padding:7px 13px;font-size:12.5px;font-weight:900;margin-bottom:16px}
+.bp-timer{margin-bottom:16px}
+.bp-stock{font-size:11.5px;color:var(--muted);display:flex;align-items:center;gap:7px;margin-bottom:16px;font-weight:700}
+.bp-stock .bar{flex:1;height:6px;border-radius:6px;background:#EFF2F7;overflow:hidden}
+.bp-stock .bar i{display:block;height:100%;width:78%;border-radius:6px;background:linear-gradient(90deg,var(--gold),var(--gold-2))}
+.bp-list{display:grid;gap:9px;margin-bottom:18px}
+.bp-list li{display:flex;gap:9px;font-size:12.5px;color:#33445C;line-height:1.6;align-items:flex-start}
+.bp-list li i{color:var(--ok);font-size:11px;margin-top:5px;flex-shrink:0}
+.bp-actions{display:grid;gap:9px}
+.bp-note{font-size:11px;color:var(--muted-2);text-align:center;margin-top:12px;line-height:1.7}
+
+/* Trust row under panel */
+.bp-trust{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;padding:14px 18px;background:#FCFAF6;border-top:1px solid var(--line);font-size:11px;font-weight:800;color:var(--muted)}
+.bp-trust span{display:inline-flex;align-items:center;gap:6px}
+.bp-trust i{color:var(--gold)}
+
+/* ---------- Content sections ---------- */
+.cd-sec{padding:clamp(40px,5vw,64px) 0}
+.cd-sec h2{font-size:clamp(21px,2.6vw,30px);font-weight:900;letter-spacing:-.5px;margin-bottom:8px}
+.cd-sec .sub{color:var(--muted);font-size:14.5px;margin-bottom:28px;line-height:1.9}
+
+/* highlights */
+.hl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(max-width:620px){.hl-grid{grid-template-columns:1fr}}
+.hl{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:18px;box-shadow:var(--sh-1);
+  transition:transform .35s var(--ease),box-shadow .35s,border-color .3s}
+.hl:hover{transform:translateY(-5px);box-shadow:var(--sh-2);border-color:rgba(255,172,30,.4)}
+.hl-ic{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;flex-shrink:0;font-size:17px;
+  background:linear-gradient(140deg,var(--gold-3),#FFF9EC);border:1px solid rgba(255,172,30,.35);color:#8A5A05}
+.hl h4{font-size:14.5px;margin-bottom:4px}
+.hl p{font-size:12.5px;color:var(--muted);line-height:1.8}
+
+/* curriculum accordion */
+.cur{border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;background:#fff;box-shadow:var(--sh-1)}
+.cur-item + .cur-item{border-top:1px solid var(--line)}
+.cur-head{width:100%;display:flex;align-items:center;gap:14px;padding:17px 20px;text-align:start;transition:background .25s}
+.cur-head:hover{background:#FFFCF5}
+.cur-num{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:12px;font-weight:900;flex-shrink:0;
+  background:var(--paper-2);color:var(--ink-soft);transition:background .25s,color .25s}
+.cur-item.open .cur-num{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#2A1B02}
+.cur-title{flex:1;font-size:14px;font-weight:800;line-height:1.5}
+.cur-count{font-size:11px;font-weight:800;color:var(--muted-2);white-space:nowrap}
+.cur-head i.chev{font-size:11px;color:var(--gold);transition:transform .35s var(--ease)}
+.cur-item.open .cur-head i.chev{transform:rotate(180deg)}
+.cur-body{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.cur-body ul{padding:0 20px 18px 20px;display:grid;gap:9px}
+.cur-body li{display:flex;gap:10px;font-size:13px;color:#3A4C63;line-height:1.75;align-items:flex-start}
+.cur-body li i{color:var(--ok);font-size:11px;margin-top:6px;flex-shrink:0}
+
+/* includes / audience / outcomes */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.two-col{grid-template-columns:1fr}}
+.panel{background:#fff;border:1px solid var(--line);border-radius:var(--r-md);padding:24px;box-shadow:var(--sh-1)}
+.panel h3{font-size:16px;margin-bottom:14px;display:flex;align-items:center;gap:9px}
+.panel h3 i{color:var(--gold)}
+.panel ul{display:grid;gap:10px}
+.panel li{display:flex;gap:10px;font-size:13px;color:#3A4C63;line-height:1.75;align-items:flex-start}
+.panel li i{color:var(--ok);font-size:11px;margin-top:6px;flex-shrink:0}
+.panel.dark{background:linear-gradient(150deg,var(--ink),#16375F);color:#fff;border-color:transparent}
+.panel.dark h3{color:#fff}
+.panel.dark h3 i{color:var(--gold-2)}
+.panel.dark li{color:rgba(255,255,255,.78)}
+.panel.dark li i{color:var(--gold-2)}
+
+/* value stack */
+.value{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+@media(max-width:700px){.value{grid-template-columns:1fr}}
+.vitem{background:#FFFDF7;border:1px dashed rgba(255,172,30,.5);border-radius:var(--r-sm);padding:16px;text-align:center}
+.vitem b{display:block;font-family:'Cairo';font-size:24px;font-weight:900;color:var(--ink)}
+.vitem span{font-size:11.5px;color:var(--muted);font-weight:700}
+
+/* sticky mobile buy bar */
+.mbar{display:none;position:fixed;inset-inline:0;bottom:0;z-index:1150;background:rgba(255,255,255,.97);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-top:1px solid var(--line);
+  padding:11px 16px;gap:12px;align-items:center;box-shadow:0 -8px 30px -18px rgba(11,30,61,.5)}
+.mbar .mp{flex:1;min-width:0}
+.mbar .mp b{font-family:'Cairo';font-size:20px;font-weight:900;line-height:1;display:block}
+.mbar .mp span{font-size:10.5px;color:var(--muted-2);text-decoration:line-through;font-weight:700}
+.mbar .btn{padding:12px 18px;font-size:13px;border-radius:12px}
+@media(max-width:980px){.mbar{display:flex}body{padding-bottom:74px}.fab-tg{bottom:88px}}
+</style>
+</head>
+<body>
+<div class="page-glow"></div>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="dot-live"></span>
+    <span>خصومات <b>آخر العام</b> — ديسمبر 2026</span>
+    <span class="sep">·</span>
+    <span>خصم يصل إلى <b>65%</b></span>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="wrap head-in">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="شعار أكاديمية عايد" class="brand-mark">
+      <span class="brand-txt"><b>أكاديمية عايد</b><span>AYED ACADEMY</span></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html#courses" class="active">الدورات</a>
+      <a href="index.html#offer">عرض ديسمبر</a>
+      <a href="index.html#why">لماذا نحن</a>
+      <a href="index.html#faq">الأسئلة</a>
+    </nav>
+    <div class="head-act">
+      <button class="cart-open" data-open-cart aria-label="سلة المشتريات">
+        <i class="fa-solid fa-bag-shopping"></i><span class="lbl">السلة</span>
+        <span class="cart-badge hide" data-cart-badge>0</span>
+      </button>
+      <button class="burger" id="burger" aria-label="القائمة"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="mnav-scrim" id="mnavScrim"></div>
+<nav class="mnav" id="mnav">
+  <div class="mnav-top">
+    <div class="brand">
+      <img src="assets/logo.png" alt="" class="brand-mark" style="width:38px;height:38px">
+      <span class="brand-txt"><b style="font-size:14px">أكاديمية عايد</b><span>AYED ACADEMY</span></span>
+    </div>
+    <button class="x-btn" aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <a href="index.html#courses"><i class="fa-solid fa-graduation-cap"></i> الدورات</a>
+  <a href="index.html#offer"><i class="fa-solid fa-gift"></i> عرض ديسمبر</a>
+  <a href="index.html#why"><i class="fa-solid fa-award"></i> لماذا نحن</a>
+  <a href="index.html#faq"><i class="fa-solid fa-circle-question"></i> الأسئلة</a>
+  <div class="mnav-foot">
+    <button class="btn btn-gold btn-block" data-open-cart><i class="fa-solid fa-bag-shopping"></i> السلة (<span data-cart-count-text>0</span>)</button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="cd-hero">
+  <div class="wrap">
+    <div class="crumbs">
+      <a href="index.html">الرئيسية</a><i class="fa-solid fa-chevron-left"></i>
+      <a href="index.html#courses">الدورات</a><i class="fa-solid fa-chevron-left"></i>
+      <span id="crumbName">تفاصيل الدورة</span>
+    </div>
+
+    <div class="cd-grid">
+      <div id="cdMain"></div>
+      <aside id="cdBuy"></aside>
+    </div>
+  </div>
+</section>
+
+<div id="cdSections"></div>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="fbrand">
+          <img src="assets/logo.png" alt="شعار أكاديمية عايد">
+          <div><b>أكاديمية عايد للتدريب</b><span>AYED ACADEMY</span></div>
+        </div>
+        <p>متجرك المتخصص في دورات اختبار كفايات اللغة الإنجليزية STEP — محتوى محدّث 2026، شرح مبسط، وخطط مذاكرة توصلك للدرجة العالية.</p>
+      </div>
+      <div>
+        <h4>روابط سريعة</h4>
+        <ul>
+          <li><a href="index.html#courses">الدورات والباقات</a></li>
+          <li><a href="index.html#offer">خصومات آخر العام</a></li>
+          <li><a href="index.html#faq">الأسئلة الشائعة</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>تأكيد الطلبات</h4>
+        <ul>
+          <li>تيليجرام: <a href="https://t.me/Ayed_Academy_2026" target="_blank" rel="noopener">@Ayed_Academy_2026</a></li>
+          <li>خدمة العملاء: على مدار الساعة</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span data-year>2026</span> أكاديمية عايد للتدريب — جميع الحقوق محفوظة.</span>
+      <span>عايد بتقربلك المسافات</span>
+    </div>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-label="سلة المشتريات">
+  <div class="drawer-head">
+    <h3><i class="fa-solid fa-bag-shopping"></i> سلة المشتريات</h3>
+    <button class="x-btn" data-drawer-close aria-label="إغلاق"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-foot" id="drawerFoot"></div>
+</aside>
+
+<a href="https://t.me/Ayed_Academy_2026" target="_blank" rel="noopener" class="fab-tg">
+  <i class="fa-brands fa-telegram"></i><span>تأكيد الطلب على تيليجرام</span>
+</a>
+<button class="to-top" data-to-top onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="للأعلى"><i class="fa-solid fa-chevron-up"></i></button>
+<div class="toast" id="toast"><span class="dot"></span><span id="toastText"></span></div>
+
+<div class="mbar">
+  <div class="mp"><b id="mbarPrice">0</b><span id="mbarOld">0</span></div>
+  <button class="btn btn-line" id="mbarView"><i class="fa-solid fa-list-ul"></i> المميزات</button>
+  <button class="btn btn-gold" id="mbarBuy"><i class="fa-solid fa-bag-shopping"></i> أضف</button>
+</div>
+
+<script src="assets/store.js"></script>
+<script>
+/* ---------- Resolve course from URL ---------- */
+const params = new URLSearchParams(location.search);
+let course = STORE.byId(params.get('course')) || STORE.courses[0];
+const off = STORE.discountOf(course);
+const save = STORE.savingOf(course);
+
+document.title = `${course.shortName} — أكاديمية عايد | STEP 2026`;
+document.getElementById('crumbName').textContent = course.shortName;
+
+/* ---------- Main column ---------- */
+document.getElementById('cdMain').innerHTML = `
+  <span class="cd-eyebrow"><i class="fa-solid fa-snowflake"></i> ${STORE.campaign.sub} · ${course.badge}</span>
+  <h1>${course.name}</h1>
+  <p class="lead">${course.summary}</p>
+  <div class="cd-facts">
+    <span class="fact"><i class="fa-solid fa-signal"></i> ${course.level}</span>
+    <span class="fact"><i class="fa-solid fa-clock"></i> ${course.duration}</span>
+    <span class="fact"><i class="fa-solid fa-play"></i> ${course.lessons}</span>
+    <span class="fact"><i class="fa-solid fa-certificate"></i> شهادة إتمام</span>
+    <span class="fact"><i class="fa-solid fa-percent"></i> خصم ${off}%</span>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <a href="#curriculum" class="btn btn-ghost-light"><i class="fa-solid fa-list-ul"></i> استعرض المحتوى</a>
+    <a href="#buy" class="btn btn-gold"><i class="fa-solid fa-bolt"></i> اشترك الآن</a>
+  </div>`;
+
+/* ---------- Buy panel ---------- */
+document.getElementById('cdBuy').innerHTML = `
+  <div class="buy-panel" id="buy">
+    <div class="bp-media">
+      <img src="${course.img}" alt="${course.name}">
+      <span class="bp-flag">${course.badge}</span>
+    </div>
+    <div class="bp-body">
+      <div class="bp-label">السعر بعد خصم آخر العام</div>
+      <div class="bp-price">
+        <span class="now">${STORE.money(course.price)} <small>ريال</small></span>
+        <span class="was">${STORE.money(course.old)}</span>
+      </div>
+      <span class="bp-save"><i class="fa-solid fa-arrow-trend-down"></i> توفير ${STORE.money(save)} ريال (${off}%)</span>
+
+      <div class="bp-timer">
+        <div class="countdown" data-countdown style="max-width:100%;background:#FCFAF6;border-color:var(--line)">
+          <span class="cd-label" style="color:#8A5A05">ينتهي بعد</span>
+          <div class="cd-cell" style="background:#fff;border-color:var(--line)"><b data-cd="d" style="color:var(--ink)">00</b><small style="color:var(--muted-2)">يوم</small></div>
+          <div class="cd-cell" style="background:#fff;border-color:var(--line)"><b data-cd="h" style="color:var(--ink)">00</b><small style="color:var(--muted-2)">ساعة</small></div>
+          <div class="cd-cell" style="background:#fff;border-color:var(--line)"><b data-cd="m" style="color:var(--ink)">00</b><small style="color:var(--muted-2)">دقيقة</small></div>
+        </div>
+      </div>
+
+      <div class="bp-stock"><i class="fa-solid fa-fire" style="color:#E2571E"></i> العرض محدود<em style="flex:1"></em><span class="bar"><i></i></span></div>
+
+      <ul class="bp-list">
+        ${course.includes.slice(0, 4).map(x => `<li><i class="fa-solid fa-check"></i>${x}</li>`).join('')}
+      </ul>
+
+      <div class="bp-actions">
+        <button class="btn btn-gold btn-block" data-add="${course.id}"><i class="fa-solid fa-bag-shopping"></i> أضف للسلة</button>
+        <button class="btn btn-ink btn-block" id="buyNow"><i class="fa-solid fa-bolt"></i> اشترِ الآن مباشرة</button>
+        <a href="https://t.me/Ayed_Academy_2026" target="_blank" rel="noopener" class="btn btn-line btn-block btn-sm">
+          <i class="fa-brands fa-telegram"></i> استفسر قبل الشراء
+        </a>
+      </div>
+      <div class="bp-note">تُرسل بياناتك وتفاصيل الدورة كرسالة جاهزة إلى الدعم على تيليجرام لتأكيد الاشتراك.</div>
+    </div>
+    <div class="bp-trust">
+      <span><i class="fa-solid fa-lock"></i> دفع آمن</span>
+      <span><i class="fa-solid fa-headset"></i> دعم فوري</span>
+      <span><i class="fa-solid fa-rotate"></i> تحديثات مجانية</span>
+    </div>
+  </div>`;
+
+/* ---------- Sections ---------- */
+document.getElementById('cdSections').innerHTML = `
+<section class="cd-sec" style="padding-bottom:0">
+  <div class="wrap">
+    <h2 class="rv">لماذا هذه الباقة؟</h2>
+    <p class="sub rv">أربع ركائز تجعل ${course.shortName} الخيار الأمثل لهدفك.</p>
+    <div class="hl-grid">
+      ${course.highlights.map((h, i) => `
+        <div class="hl rv" style="transition-delay:${i * .06}s">
+          <div class="hl-ic"><i class="${h.icon}"></i></div>
+          <div><h4>${h.title}</h4><p>${h.text}</p></div>
+        </div>`).join('')}
+    </div>
+  </div>
+</section>
+
+<section class="cd-sec" id="curriculum">
+  <div class="wrap">
+    <h2 class="rv">محتويات الدورة بالتفصيل</h2>
+    <p class="sub rv">${course.curriculum.length} وحدات · ${course.lessons} — كل درس مبني على الخطوة السابقة.</p>
+    <div class="cur rv">
+      ${course.curriculum.map((u, i) => `
+        <div class="cur-item ${i === 0 ? 'open' : ''}">
+          <button class="cur-head">
+            <span class="cur-num">${i + 1}</span>
+            <span class="cur-title">${u.title}</span>
+            <span class="cur-count">${u.lessons.length} دروس</span>
+            <i class="fa-solid fa-chevron-down chev"></i>
+          </button>
+          <div class="cur-body" ${i === 0 ? 'style="max-height:400px"' : ''}>
+            <ul>${u.lessons.map(l => `<li><i class="fa-solid fa-circle-check"></i>${l}</li>`).join('')}</ul>
+          </div>
+        </div>`).join('')}
+    </div>
+  </div>
+</section>
+
+<section class="cd-sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="two-col">
+      <div class="panel dark rv-r">
+        <h3><i class="fa-solid fa-box-open"></i> ماذا ستحصل عليه</h3>
+        <ul>${course.includes.map(x => `<li><i class="fa-solid fa-check"></i>${x}</li>`).join('')}</ul>
+      </div>
+      <div class="panel rv-l">
+        <h3><i class="fa-solid fa-user-graduate"></i> لمن هذه الدورة</h3>
+        <ul>${course.audience.map(x => `<li><i class="fa-solid fa-circle-check"></i>${x}</li>`).join('')}</ul>
+      </div>
+    </div>
+
+    <div class="panel rv" style="margin-top:16px">
+      <h3><i class="fa-solid fa-bullseye"></i> النتائج المتوقعة بعد إنهاء الدورة</h3>
+      <ul>${course.outcomes.map(x => `<li><i class="fa-solid fa-arrow-trend-up"></i>${x}</li>`).join('')}</ul>
+    </div>
+
+    <div class="value rv">
+      <div class="vitem"><b>${STORE.money(course.price)}</b><span>سعرك اليوم بعد الخصم</span></div>
+      <div class="vitem"><b>${STORE.money(save)}</b><span>ريال توفير فوري</span></div>
+      <div class="vitem"><b>${course.duration}</b><span>وصول للمحتوى</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="cd-sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-box rv">
+      <h2>${course.tagline}</h2>
+      <p>${course.details}</p>
+      <div class="cta-actions">
+        <button class="btn btn-gold" data-add="${course.id}"><i class="fa-solid fa-bag-shopping"></i> أضف للسلة — ${STORE.money(course.price)} ريال</button>
+        <a href="checkout.html" class="btn btn-ghost-light"><i class="fa-solid fa-arrow-left"></i> إتمام الشراء</a>
+      </div>
+    </div>
+  </div>
+</section>`;
+
+/* ---------- Mobile bar ---------- */
+document.getElementById('mbarPrice').textContent = STORE.money(course.price) + ' ريال';
+document.getElementById('mbarOld').textContent = STORE.money(course.old) + ' ريال';
+document.getElementById('mbarBuy').addEventListener('click', () => {
+  const isNew = Cart.add(course.id);
+  UI.cartBadge();
+  UI.toast(isNew ? 'تمت الإضافة إلى السلة ✓' : 'الدورة في سلتك');
+  UI.openDrawer();
+});
+document.getElementById('mbarView').addEventListener('click', () => {
+  document.getElementById('curriculum').scrollIntoView({ behavior: 'smooth' });
+});
+
+/* ---------- Buy now: add then go to checkout ---------- */
+document.getElementById('buyNow').addEventListener('click', () => {
+  Cart.add(course.id);
+  UI.cartBadge();
+  location.href = 'checkout.html';
+});
+
+/* ---------- Curriculum accordion ---------- */
+function openCur(item) {
+  const body = item.querySelector('.cur-body');
+  body.style.maxHeight = body.scrollHeight + 24 + 'px';
+}
+document.querySelectorAll('.cur-item.open').forEach(openCur);
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.cur-item.open').forEach(openCur);
+});
+
+document.querySelectorAll('.cur-head').forEach(h => {
+  h.addEventListener('click', () => {
+    const item = h.parentElement;
+    const body = item.querySelector('.cur-body');
+    const open = item.classList.toggle('open');
+    if (open) body.style.maxHeight = body.scrollHeight + 40 + 'px';
+    else body.style.maxHeight = 0;
+  });
+});
+</script>
+</body>
+</html>
